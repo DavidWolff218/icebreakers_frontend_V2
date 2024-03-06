@@ -1,24 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+// @ts-ignore
+import { ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
 import './App.css';
 
 function App() {
+
+  // interface respUser {
+  //   id: number,
+  //   username: string
+  // }
+
+  // const handleClick = async () => {
+  //   console.log("clicked")
+  //   await fetch(
+  //     `http://localhost:3000/users/by_room/1620`
+  //   )
+  // }
+
+  const handleReceived = (): void => {
+    console.log("i been recieved")
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ActionCableConsumer channel={{
+          channel: "UsersChannel",
+          room: 1620
+        }}
+        onReceived={handleReceived}>
+          {/* /users/by_room/:room_id */}
+        <button>CLICK ME</button>
+
+      </ActionCableConsumer> 
     </div>
   );
 }
