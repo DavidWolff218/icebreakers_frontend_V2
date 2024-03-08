@@ -1,6 +1,5 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './CSS/index.css';
 import { API_WS_ROOT } from './constants';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
