@@ -1,39 +1,58 @@
-import React from 'react';
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from "./Home"
+import Room from "./Room"
 // @ts-ignore
-import { ActionCableConsumer } from '@thrash-industries/react-actioncable-provider';
-import './App.css';
+import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
+import "./App.css";
+
 
 function App() {
+  type User = {
+    id: number;
+    username: string;
+  };
 
-  // interface respUser {
-  //   id: number,
-  //   username: string
-  // }
+  type RoomInfo = {
+    user: User;
+    roomName: string;
+    hostID: number;
+    hostName: string;
+    gameStarted: boolean;
+  };
 
-  // const handleClick = async () => {
-  //   console.log("clicked")
-  //   await fetch(
-  //     `http://localhost:3000/users/by_room/1620`
-  //   )
-  // }
+  const [roomInfo, setRoomInfo] = useState<RoomInfo>({
+    user: {username: '', id: 0},
+    roomName: "",
+    hostID: 0,
+    hostName: "",
+    gameStarted: false,
+  });
 
-  const handleReceived = (): void => {
-    console.log("i been recieved")
-  }
+
 
   return (
     <div className="App">
-      <ActionCableConsumer channel={{
-          channel: "UsersChannel",
-          room: 1620
-        }}
-        onReceived={handleReceived}>
-          {/* /users/by_room/:room_id */}
-        <button>CLICK ME</button>
-
-      </ActionCableConsumer> 
+      HIHIHI
+      <Router>
+        <Routes>
+          <Route path = '/' element={<Home/>} />
+          <Route path = '/room/:id' element={<Room/>} />
+        </Routes>
+      </Router>
+   
     </div>
   );
 }
 
 export default App;
+
+{/* <ActionCableConsumer
+channel={{
+  channel: "UsersChannel",
+  room: 1620,
+}}
+onReceived={handleReceived}
+>
+{/* /users/by_room/:room_id */}
+// </ActionCableConsumer> */}
