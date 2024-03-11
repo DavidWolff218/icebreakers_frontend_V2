@@ -1,6 +1,15 @@
 const NavBar = () => {
-  return ( <>
-  </>  );
-}
+  const logOutBtn = (): JSX.Element => {
+    if (true) {
+      return <button>ENDGAME</button>;
+    } else {
+      return <button>LOGOUT</button>;
+    }
+  };
 
-export default NavBar ;
+  return <>
+  {logOutBtn()}
+  </>;
+};
+
+export default NavBar;
