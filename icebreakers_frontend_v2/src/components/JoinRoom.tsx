@@ -1,5 +1,9 @@
 const JoinRoom = () => {
-  return <></>;
+  return (
+    <div>
+      here you can join a room
+    </div>
+    );
 };
 
 export default JoinRoom;
