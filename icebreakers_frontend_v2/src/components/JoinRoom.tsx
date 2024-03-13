@@ -13,23 +13,24 @@ const JoinRoom = () => {
   };
 
   type JoinForm = {
-    username: string;
     room_name: string;
+    username: string; 
   };
 
   const [joinForm, setJoinForm] = useState<JoinForm>({
-    username: "",
     room_name: "",
+    username: ""
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setJoinForm((prev: JoinForm) => ({
       ...prev,
-      [event.target.name]: [event.target.value],
+      [event.target.name]: event.target.value,
     }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     const reqObj: ReqObj = {
       method: "POST",
       headers: {
@@ -41,11 +42,11 @@ const JoinRoom = () => {
       }),
     };
     try {
-      const resp = await fetch(`${API_ROOT}/`, reqObj);
+      const resp = await fetch('http://localhost:3000/', reqObj);
       if (!resp.ok) {
         console.error(resp);
       } else {
-        const data = resp.json()
+        const data = await resp.json()
         console.log(data)
       }
     } catch(error) {
@@ -55,7 +56,7 @@ const JoinRoom = () => {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Room Code</label>
         <br />
         <input
@@ -74,7 +75,7 @@ const JoinRoom = () => {
           onChange={handleChange}
         ></input>
         <br />
-        <button type="submit" onSubmit={handleSubmit}>
+        <button type="submit" >
           Submit
         </button>
       </form>
