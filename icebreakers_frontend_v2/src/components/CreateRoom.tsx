@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { API_ROOT } from "../constants";
-import { render } from "@testing-library/react";
-import { hostname } from "os";
 
 const CreateRoom = () => {
   const [roomName, setRoomName] = useState("");
@@ -63,7 +61,9 @@ const CreateRoom = () => {
       } 
       const data = await resp.json();
       console.log(data)
-    } catch {}
+    } catch(error) {
+      console.error("Error creating Room or Hostname:", error)
+     }
   };
 
   const renderForm = (): JSX.Element => {
@@ -73,7 +73,7 @@ const CreateRoom = () => {
         {roomName}
         <form onSubmit={handleSubmit}>
           <label>Enter Host Name</label>
-          <input type="text" value={hostName} onChange={handleChange} />
+          <input type="text" name="hostName" value={hostName} onChange={handleChange} />
           <button type="submit">
           Create your Room
         </button>
