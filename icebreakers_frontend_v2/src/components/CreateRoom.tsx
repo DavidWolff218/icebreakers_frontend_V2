@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { API_ROOT } from "../constants";
+import { RoomData, UserData } from "../types";
 
-const CreateRoom = () => {
+interface HomeProps {
+  handleRoomData: (room: RoomData, user: UserData) => void;
+}
+
+const CreateRoom: React.FC<HomeProps> = ({handleRoomData}) => {
   const [roomName, setRoomName] = useState("");
   const [hostName, setHostName] = useState("");
 
@@ -60,7 +65,7 @@ const CreateRoom = () => {
         console.error(resp);
       } 
       const data = await resp.json();
-      console.log(data)
+      handleRoomData(data.room, data.user)
     } catch(error) {
       console.error("Error creating Room or Hostname:", error)
      }

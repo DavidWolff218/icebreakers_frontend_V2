@@ -1,8 +1,13 @@
 import { useState } from "react";
 import CreateRoom from "./components/CreateRoom";
 import JoinRoom from "./components/JoinRoom";
+import { RoomData, UserData } from "./types";
 
-const Home = () => {
+interface HomeProps {
+  handleRoomData: (room: RoomData, user: UserData) => void;
+}
+
+const Home: React.FC<HomeProps> = ({handleRoomData}) => {
 
   const [showJoin, setShowJoin] = useState(true);
 
@@ -23,7 +28,7 @@ const Home = () => {
     <div>
       <>THIS IS THE HOME PAGE</>
       {renderBtns()}
-      {showJoin ? <JoinRoom /> : <CreateRoom />}
+      {showJoin ? <JoinRoom /> : <CreateRoom handleRoomData={handleRoomData}/>}
     </div>
   );
 };
