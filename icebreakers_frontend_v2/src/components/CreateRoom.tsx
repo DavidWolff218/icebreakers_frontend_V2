@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { API_ROOT } from "../constants";
 import { RoomData, UserData } from "../types";
+import { useNavigate } from 'react-router-dom'
 
 type HomeProps = {
   handleRoomData: (room: RoomData, user: UserData) => void;
 }
 
 const CreateRoom = ({handleRoomData}: HomeProps) => {
-  
+
+  const navigate = useNavigate()
+
   const [roomName, setRoomName] = useState("");
   const [hostName, setHostName] = useState("");
 
@@ -66,7 +69,9 @@ const CreateRoom = ({handleRoomData}: HomeProps) => {
         console.error(resp);
       } 
       const data = await resp.json();
+      console.log(data)
       handleRoomData(data.room, data.user)
+      navigate(`/room/${data.room.id}`)
     } catch(error) {
       console.error("Error creating Room or Hostname:", error)
      }

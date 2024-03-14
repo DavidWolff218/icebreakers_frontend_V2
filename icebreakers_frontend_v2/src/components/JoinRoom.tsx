@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { RoomData, UserData } from "../types";
 import { API_ROOT } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 type JoinProps = {
   handleRoomData: (room: RoomData, user: UserData) => void
 }
 
 const JoinRoom = ({handleRoomData}: JoinProps) => {
+
+  const navigate = useNavigate()
 
   type ReqObj = {
     method: string;
@@ -53,6 +56,7 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
       } else {
         const data = await resp.json()
         handleRoomData(data.room, data.user)
+        navigate(`/room/${data.room.id}`)
       }
     } catch(error) {
       console.error("Error joining Room or creating Username:", error)
