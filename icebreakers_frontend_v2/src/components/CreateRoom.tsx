@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { API_ROOT } from "../constants";
 import { RoomData, UserData } from "../types";
 
-interface HomeProps {
+type HomeProps = {
   handleRoomData: (room: RoomData, user: UserData) => void;
 }
 
-const CreateRoom: React.FC<HomeProps> = ({handleRoomData}) => {
+const CreateRoom = ({handleRoomData}: HomeProps) => {
+  
   const [roomName, setRoomName] = useState("");
   const [hostName, setHostName] = useState("");
 

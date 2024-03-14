@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = ({handleRoomData}) => {
     <div>
       <>THIS IS THE HOME PAGE</>
       {renderBtns()}
-      {showJoin ? <JoinRoom /> : <CreateRoom handleRoomData={handleRoomData}/>}
+      {showJoin ? <JoinRoom handleRoomData={handleRoomData}/> : <CreateRoom handleRoomData={handleRoomData}/>}
     </div>
   );
 };

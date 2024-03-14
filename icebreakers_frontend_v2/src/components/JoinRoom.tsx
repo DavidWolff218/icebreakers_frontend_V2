@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { RoomData, UserData } from "../types";
 import { API_ROOT } from "../constants";
 
-const JoinRoom = () => {
+type JoinProps = {
+  handleRoomData: (room: RoomData, user: UserData) => void
+}
+
+const JoinRoom = ({handleRoomData}: JoinProps) => {
 
   type ReqObj = {
     method: string;
@@ -47,7 +52,7 @@ const JoinRoom = () => {
         console.error(resp);
       } else {
         const data = await resp.json()
-        console.log(data)
+        handleRoomData(data.room, data.user)
       }
     } catch(error) {
       console.error("Error joining Room or creating Username:", error)
