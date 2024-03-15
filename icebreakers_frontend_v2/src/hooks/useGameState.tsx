@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { GameRound } from "../types";
 const UseGameState = () => {
-  
+
+  const handleRecieved = (resp: any) => {
+    console.log("hello from handleReceived")
+    console.log(resp)
+  }
+
   const [gameRound, setGameRound] = useState<GameRound>({
     currentPlayer: "",
     currentPlayerID: 0,
@@ -17,7 +22,7 @@ const UseGameState = () => {
     //   timerIntervalID: "",
     // ^^ to be used for voting feature
   });
-  return { gameRound };
+  return { gameRound, setGameRound, handleRecieved };
 };
 
 export default UseGameState;

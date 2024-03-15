@@ -1,4 +1,3 @@
-import { wait } from "@testing-library/user-event/dist/utils";
 import { Host, User } from "../types";
 
 type WaitingRoomProps = {

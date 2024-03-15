@@ -3,15 +3,23 @@ import { API_ROOT } from "./constants";
 import NavBar from "./components/NavBar";
 import { RoomInfo } from "./types";
 import WaitingRoom from "./components/WaitingRoom";
+import UseGameState from "./hooks/useGameState";
+// @ts-ignore
+import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 
 type RoomProps = {
   roomInfo: RoomInfo;
 };
 
 const Room = ({ roomInfo }: RoomProps) => {
+
   const { roomId } = useParams();
 
   const { user, roomName, host, gameStarted } = roomInfo;
+
+  const {
+    handleRecieved
+  } = UseGameState()
 
   console.log(
     "Here is my room info in room component",
@@ -64,7 +72,16 @@ const Room = ({ roomInfo }: RoomProps) => {
     <div>
       <NavBar />
       <div>THIS IS ROOM</div>
-      {waitingText()}
+
+      <ActionCableConsumer
+        channel={{
+          channel: "UsersChannel",
+          room: roomId
+        }}
+        onReceived={handleRecieved}
+      >
+        {waitingText()}
+      </ActionCableConsumer>
     </div>
   );
 };

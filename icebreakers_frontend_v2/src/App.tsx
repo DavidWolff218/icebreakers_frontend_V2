@@ -2,10 +2,9 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import Home from "./Home";
 import Room from "./Room";
-// @ts-ignore
-import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 import "./CSS/App.css";
 import { UserData, RoomData, RoomInfo, User, Host } from "./types";
+
 
 
 function App() {
@@ -44,14 +43,4 @@ function App() {
 
 export default App;
 
-{
-  /* <ActionCableConsumer
-channel={{
-  channel: "UsersChannel",
-  room: 1620,
-}}
-onReceived={handleReceived}
->
-{/* /users/by_room/:room_id */
-}
-// </ActionCableConsumer> */}
+
