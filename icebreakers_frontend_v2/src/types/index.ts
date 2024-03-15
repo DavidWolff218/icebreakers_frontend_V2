@@ -1,3 +1,13 @@
+export type User = {
+  id: number;
+  userName: string;
+};
+
+export type Host = {
+  id: number;
+  hostName: string;
+};
+
 
 export type RoomData = {
   room_name: string;
@@ -8,7 +18,29 @@ export type RoomData = {
 
 export type UserData = {
   id: number;
-  is_active: boolean;
-  is_selected: boolean;
+  is_active?: boolean;
+  is_selected?: boolean;
   username: string;
+}
+
+export type RoomInfo = {
+  user: User;
+  roomName: string;
+  host: Host;
+  gameStarted: boolean;
+};
+
+export type CurrentQuestion = {
+  id: number,
+  content: string
+}
+
+export type GameRound = {
+    currentPlayer: string,
+    currentPlayerID: number,
+    currentQuestion: CurrentQuestion,
+    reshufflingUsers: boolean,
+    reshufflingQuestions: boolean,
+    allUsers: UserData[],
+    gameActive: boolean,
 }

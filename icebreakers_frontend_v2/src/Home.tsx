@@ -3,11 +3,11 @@ import CreateRoom from "./components/CreateRoom";
 import JoinRoom from "./components/JoinRoom";
 import { RoomData, UserData } from "./types";
 
-interface HomeProps {
+type HomeProps = {
   handleRoomData: (room: RoomData, user: UserData) => void;
 }
 
-const Home: React.FC<HomeProps> = ({handleRoomData}) => {
+const Home = ({handleRoomData}: HomeProps) => {
 
   const [showJoin, setShowJoin] = useState(true);
 

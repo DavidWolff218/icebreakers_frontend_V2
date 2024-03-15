@@ -5,24 +5,8 @@ import Room from "./Room";
 // @ts-ignore
 import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 import "./CSS/App.css";
-import { UserData, RoomData } from "./types";
+import { UserData, RoomData, RoomInfo, User, Host } from "./types";
 
-type User = {
-  id: number;
-  userName: string;
-};
-
-type Host = {
-  id: number;
-  hostName: string;
-};
-
-type RoomInfo = {
-  user: User;
-  roomName: string;
-  host: Host;
-  gameStarted: boolean;
-};
 
 function App() {
 
@@ -49,7 +33,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home handleRoomData={handleRoomData}/>} />
-          <Route path="/room/:roomId" element={<Room />} />
+          <Route path="/room/:roomId" element={<Room roomInfo={roomInfo} />} />
         </Routes>
       </Router>
     </div>
