@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import Home from "./Home";
 import Room from "./Room";
 // @ts-ignore
@@ -17,8 +17,6 @@ function App() {
     gameStarted: false,
   });
 
-  console.log("THIS THE ROOM", roomInfo)
-
   const handleRoomData = (room: RoomData, user: UserData) => {
     setRoomInfo({
       user: { userName: user.username, id: user.id },
@@ -33,7 +31,11 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home handleRoomData={handleRoomData}/>} />
-          <Route path="/room/:roomId" element={<Room roomInfo={roomInfo} />} />
+          <Route path="/room/:roomId" element={roomInfo.user.id !== 0 ? (
+      <Room roomInfo={roomInfo} />
+    ) : (
+      <Navigate to="/" replace={true} /> // ***NOT SURE IF NEED THIS, EXPERIMENT LATER
+    )} />
         </Routes>
       </Router>
     </div>

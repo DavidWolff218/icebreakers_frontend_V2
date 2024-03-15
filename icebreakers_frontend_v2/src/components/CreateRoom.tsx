@@ -69,7 +69,6 @@ const CreateRoom = ({handleRoomData}: HomeProps) => {
         console.error(resp);
       } 
       const data = await resp.json();
-      console.log(data)
       handleRoomData(data.room, data.user)
       navigate(`/room/${data.room.id}`)
     } catch(error) {

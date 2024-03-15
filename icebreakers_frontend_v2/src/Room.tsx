@@ -5,11 +5,21 @@ import { RoomInfo } from "./types";
 import WaitingRoom from "./components/WaitingRoom";
 
 type RoomProps = {
-  roomInfo: RoomInfo
-}
+  roomInfo: RoomInfo;
+};
 
-const Room = ({roomInfo}: RoomProps) => {
+const Room = ({ roomInfo }: RoomProps) => {
   const { roomId } = useParams();
+
+  const { user, roomName, host, gameStarted } = roomInfo;
+
+  console.log(
+    "Here is my room info in room component",
+    user,
+    host,
+    gameStarted,
+    roomName
+  );
 
   const handleStartClick = async () => {
     try {
@@ -36,13 +46,25 @@ const Room = ({roomInfo}: RoomProps) => {
   const screenText = () => {};
 
   const waitingText = () => {
-
+    //***not sure if need this conditional still */
+    if (!gameStarted) {
+      return (
+        <WaitingRoom
+          host={host}
+          user={user}
+          handleStartClick={handleStartClick}
+        />
+      );
+    }
+    return null;
+    // users={gameRound.allUsers}
   };
 
   return (
     <div>
       <NavBar />
       <div>THIS IS ROOM</div>
+      {waitingText()}
     </div>
   );
 };
