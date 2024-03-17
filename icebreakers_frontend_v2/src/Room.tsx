@@ -18,8 +18,14 @@ const Room = ({ roomInfo }: RoomProps) => {
   const { user, roomName, host, gameStarted } = roomInfo;
 
   const {
-    handleRecieved
-  } = UseGameState()
+    gameRound,
+    // setGameRound,
+    handleReceived,
+    hostEnd,
+    // resetUsersAndQuestionsShuffle,
+    // resetQuestionsShuffle,
+    // resetUsersShuffle,
+  } = UseGameState();
 
   console.log(
     "Here is my room info in room component",
@@ -51,7 +57,13 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   };
 
-  const screenText = () => {};
+  const screenText = () => {
+    console.log("game room info", gameRound)
+    return (<div>
+
+      "WE MADE IT TO THE GAME"
+    </div>)
+  };
 
   const waitingText = () => {
     //***not sure if need this conditional still */
@@ -71,16 +83,14 @@ const Room = ({ roomInfo }: RoomProps) => {
   return (
     <div>
       <NavBar />
-      <div>THIS IS ROOM</div>
-
       <ActionCableConsumer
         channel={{
           channel: "UsersChannel",
           room: roomId
         }}
-        onReceived={handleRecieved}
+        onReceived={handleReceived}
       >
-        {waitingText()}
+        {gameRound.gameActive ? screenText() : waitingText()}
       </ActionCableConsumer>
     </div>
   );
