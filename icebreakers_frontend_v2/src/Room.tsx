@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { API_ROOT } from "./constants";
 import NavBar from "./components/NavBar";
 import { RoomInfo } from "./types";
@@ -19,7 +20,7 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   const {
     gameRound,
-    // setGameRound,
+    setGameRound,
     handleReceived,
     hostEnd,
     // resetUsersAndQuestionsShuffle,
@@ -27,13 +28,31 @@ const Room = ({ roomInfo }: RoomProps) => {
     // resetUsersShuffle,
   } = UseGameState();
 
-  console.log(
-    "Here is my room info in room component",
-    user,
-    host,
-    gameStarted,
-    roomName
-  );
+  useEffect(() => {
+    if(!gameStarted){
+      const fetchUsers = async () => {
+        try {
+          const resp = await fetch(`${API_ROOT}/users/by_room/${roomId}`)
+          if(!resp.ok){
+            throw new Error("Could not grab all users")
+          } else {
+            const data = await resp.json()
+            setGameRound(prevState => ({
+              ...prevState,
+              allUsers: data.allUsers
+            }))
+          }
+        } catch(error){
+          alert(error)
+        }
+      }
+      fetchUsers()
+    } else {
+      console.log("game started")
+    }
+    
+
+  }, [])
 
   const handleStartClick = async () => {
     try {
