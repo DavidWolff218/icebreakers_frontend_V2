@@ -73,6 +73,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           host={host}
           user={user}
           handleStartClick={handleStartClick}
+          allUsers={gameRound.allUsers}
         />
       );
     }

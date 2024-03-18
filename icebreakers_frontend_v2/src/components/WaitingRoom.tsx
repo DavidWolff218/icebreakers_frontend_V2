@@ -1,22 +1,41 @@
-import { Host, User } from "../types";
+import { Host, User, UserData } from "../types";
 
 type WaitingRoomProps = {
   host: Host;
   user: User;
   handleStartClick: () => void;
+  allUsers: UserData[];
 };
 
-const WaitingRoom = ({ host, user, handleStartClick }: WaitingRoomProps) => {
+const WaitingRoom = ({
+  host,
+  user,
+  allUsers,
+  handleStartClick,
+}: WaitingRoomProps) => {
+
+  console.log("allusers", allUsers)
   const startButton = () => {
     return <button onClick={handleStartClick}>Start The Game</button>;
   };
+
+  const renderAllUsers = (allUsers:any): JSX.Element[] => {
+   return allUsers.map((user:any) => {
+    console.log("USER", user)
+     return <h2 key={user.id}>{user.username}</h2>
+   }
+   )
+  }
 
   const waitingRoomText = () => {
     if (host.id === user.id) {
       return (
         <h2>
           As the host, you can start the game whenever your party is ready!
-          {/* <AllUsers windowText={"Lobby"} users={users} /> */}
+          <div>
+
+          {renderAllUsers(allUsers)}
+          </div>
           {startButton()}
         </h2>
       );
@@ -26,13 +45,15 @@ const WaitingRoom = ({ host, user, handleStartClick }: WaitingRoomProps) => {
           <h2>
             The host, <span>{host.hostName}</span>, will start the game soon!
           </h2>
-          {/* <AllUsers windowText={"Lobby"} users={users} /> */}
+          {renderAllUsers(allUsers)}
         </div>
       );
     }
   };
-
-  return <> {waitingRoomText()}</>;
+  return <> 
+  {waitingRoomText()}
+  
+  </>;
 };
 
 export default WaitingRoom;

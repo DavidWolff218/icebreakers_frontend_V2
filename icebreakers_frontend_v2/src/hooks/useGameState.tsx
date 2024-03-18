@@ -21,7 +21,7 @@ const UseGameState = () => {
   });
 
   const handleReceived = (resp: any) => {
-    console.log(resp)
+    console.log("RESP", resp)
     if (resp.endGame) {
       //this resp only exists when the host ends game
       setHostEnd(true)
@@ -37,7 +37,8 @@ const UseGameState = () => {
         gameActive: resp.room.game_started
         // add voting timer stuff here
       });
-    } else if (resp.room && !resp.room.game_started) {
+    } 
+    else if (resp.room && !resp.room.game_started) {
       //used for updating lobby of users as new ones come in
       setGameRound(prevState => ({
         ...prevState,
