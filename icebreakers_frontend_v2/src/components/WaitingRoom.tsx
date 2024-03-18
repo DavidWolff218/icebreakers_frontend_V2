@@ -14,14 +14,12 @@ const WaitingRoom = ({
   handleStartClick,
 }: WaitingRoomProps) => {
 
-  console.log("allusers", allUsers)
   const startButton = () => {
     return <button onClick={handleStartClick}>Start The Game</button>;
   };
 
   const renderAllUsers = (allUsers:any): JSX.Element[] => {
    return allUsers.map((user:any) => {
-    console.log("USER", user)
      return <h2 key={user.id}>{user.username}</h2>
    }
    )

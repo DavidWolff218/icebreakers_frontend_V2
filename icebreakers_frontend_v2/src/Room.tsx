@@ -4,6 +4,7 @@ import { API_ROOT } from "./constants";
 import NavBar from "./components/NavBar";
 import { RoomInfo } from "./types";
 import WaitingRoom from "./components/WaitingRoom";
+import GameText from "./components/GameText";
 import UseGameState from "./hooks/useGameState";
 // @ts-ignore
 import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
@@ -77,10 +78,10 @@ const Room = ({ roomInfo }: RoomProps) => {
   };
 
   const screenText = () => {
-    console.log("game room info", gameRound)
+    //can't get this to work using useGameState and not props
     return (<div>
 
-      "WE MADE IT TO THE GAME"
+      <GameText gameRound={gameRound}/>
     </div>)
   };
 

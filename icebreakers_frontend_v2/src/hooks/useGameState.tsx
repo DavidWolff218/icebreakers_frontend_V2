@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GameRound } from "../types";
+
 const UseGameState = () => {
   const [hostEnd, setHostEnd] = useState(false);
 
@@ -19,8 +20,13 @@ const UseGameState = () => {
     // ^^ to be used for voting feature
   });
 
+  // const setGameRoundWithLogging = (newGameRound: GameRound) => {
+  //   console.log("Setting gameRound to:", newGameRound);
+  //   setGameRound(newGameRound);
+  // };
+
   const handleReceived = (resp: any) => {
-    console.log("RESP", resp);
+    console.log("recieved!!!", resp);
     if (resp.endGame) {
       //this resp only exists when the host ends game
       setHostEnd(true);
