@@ -14,7 +14,6 @@ type RoomProps = {
 };
 
 const Room = ({ roomInfo }: RoomProps) => {
-
   const { roomId } = useParams();
 
   const { user, roomName, host, gameStarted } = roomInfo;
@@ -30,30 +29,40 @@ const Room = ({ roomInfo }: RoomProps) => {
   } = UseGameState();
 
   useEffect(() => {
-    if(!gameStarted){
+    if (!gameStarted) {
       const fetchUsers = async () => {
         try {
-          const resp = await fetch(`${API_ROOT}/users/by_room/${roomId}`)
-          if(!resp.ok){
-            throw new Error("Could not grab all users")
+          const resp = await fetch(`${API_ROOT}/users/by_room/${roomId}`);
+          if (!resp.ok) {
+            throw new Error("Could not grab all users");
           } else {
-            const data = await resp.json()
-            setGameRound(prevState => ({
+            const data = await resp.json();
+            setGameRound((prevState) => ({
               ...prevState,
-              allUsers: data.allUsers
-            }))
+              allUsers: data.allUsers,
+            }));
           }
-        } catch(error){
-          alert(error)
+        } catch (error) {
+          alert(error);
         }
-      }
-      fetchUsers()
+      };
+      fetchUsers();
     } else {
-      console.log("game started")
+      console.log("game started");
     }
-    
+  }, []);
 
-  }, [])
+  const handleClick = () => {
+    console.log("I WAS CLICKED");
+  };
+
+  const playerButton = () => {
+    if (gameRound.currentPlayerID === user.id || user.id === host.id) {
+      return <button onClick={handleClick}>NEXT QUESTION</button>;
+    } else {
+      return null
+    }
+  };
 
   const handleStartClick = async () => {
     try {
@@ -79,10 +88,11 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   const screenText = () => {
     //can't get this to work using useGameState and not props
-    return (<div>
-
-      <GameText gameRound={gameRound}/>
-    </div>)
+    return (
+      <div>
+        <GameText gameRound={gameRound} playerButton={playerButton}/>
+      </div>
+    );
   };
 
   const waitingText = () => {
@@ -98,7 +108,6 @@ const Room = ({ roomInfo }: RoomProps) => {
       );
     }
     return null;
-    // users={gameRound.allUsers}
   };
 
   return (
@@ -107,7 +116,7 @@ const Room = ({ roomInfo }: RoomProps) => {
       <ActionCableConsumer
         channel={{
           channel: "UsersChannel",
-          room: roomId
+          room: roomId,
         }}
         onReceived={handleReceived}
       >
