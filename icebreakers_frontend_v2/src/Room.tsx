@@ -23,9 +23,9 @@ const Room = ({ roomInfo }: RoomProps) => {
     setGameRound,
     handleReceived,
     hostEnd,
-    // resetUsersAndQuestionsShuffle,
-    // resetQuestionsShuffle,
-    // resetUsersShuffle,
+    resetUsersAndQuestionsShuffle,
+    resetQuestionsShuffle,
+    resetUsersShuffle,
   } = UseGameState();
 
   useEffect(() => {
@@ -112,7 +112,13 @@ const Room = ({ roomInfo }: RoomProps) => {
     //can't get this to work using useGameState and not props
     return (
       <div>
-        <GameText gameRound={gameRound} playerButton={playerButton} />
+        <GameText
+          gameRound={gameRound}
+          playerButton={playerButton}
+          resetUsersandQuestionsShuffle={resetUsersAndQuestionsShuffle}
+          resetQuestionsShuffle={resetQuestionsShuffle}
+          resetUsersShuffle={resetUsersShuffle}
+        />
       </div>
     );
   };

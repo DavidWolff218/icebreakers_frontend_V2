@@ -3,12 +3,23 @@ import { GameRound } from "../types";
 
 type GameTextProps = {
   gameRound: GameRound;
-  playerButton: () => ReactNode
+  playerButton: () => ReactNode;
+  resetUsersandQuestionsShuffle: ResetFunction;
+  resetQuestionsShuffle: ResetFunction;
+  resetUsersShuffle: ResetFunction;
 };
 
-const GameText = ({ gameRound, playerButton }: GameTextProps) => {
-  return (
-    <>
+type ResetFunction = () => void;
+
+const GameText = ({
+  gameRound,
+  playerButton,
+  resetUsersandQuestionsShuffle,
+  resetQuestionsShuffle,
+  resetUsersShuffle,
+}: GameTextProps) => {
+  const renderGameText = (): JSX.Element => {
+    return (
       <div>
         {gameRound.currentPlayer}
         <br></br>
@@ -16,6 +27,31 @@ const GameText = ({ gameRound, playerButton }: GameTextProps) => {
         <br></br>
         {playerButton()}
       </div>
+    );
+  };
+
+  // const callReset = (resetFunc: ResetFunction) => {
+  //   setTimeout(resetFunc, 2000);
+  // };
+
+  const loadingGameText = (): JSX.Element => {
+    if (gameRound.reshufflingQuestions && gameRound.reshufflingUsers) {
+      setTimeout(resetUsersandQuestionsShuffle, 2000);
+      return <div>Reshuffling Users and Questions</div>;
+    } else if (gameRound.reshufflingQuestions) {
+      setTimeout(resetQuestionsShuffle, 2000);
+      return <div>Reshuffling Questions</div>;
+    } else if (gameRound.reshufflingUsers) {
+      setTimeout(resetUsersShuffle, 2000);
+      return <div>Reshuffling Users</div>;
+    } else {
+      return renderGameText();
+    }
+  };
+
+  return (
+    <>
+      <div>{loadingGameText()}</div>
     </>
   );
 };
