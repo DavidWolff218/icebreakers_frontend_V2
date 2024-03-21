@@ -52,15 +52,37 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   }, []);
 
-  const handleClick = () => {
-    console.log("I WAS CLICKED");
+  const handleClick = async () => {
+    try {
+      const reqObj = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: {
+            room: roomId,
+            currentPlayerID: gameRound.currentPlayerID,
+          },
+          question: {
+            id: gameRound.currentQuestion.id,
+          },
+        }),
+      };
+      const resp = await fetch(`${API_ROOT}/users/select`, reqObj);
+      if (!resp.ok) {
+        console.log("Could no get next question");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const playerButton = () => {
     if (gameRound.currentPlayerID === user.id || user.id === host.id) {
       return <button onClick={handleClick}>NEXT QUESTION</button>;
     } else {
-      return null
+      return null;
     }
   };
 
@@ -90,7 +112,7 @@ const Room = ({ roomInfo }: RoomProps) => {
     //can't get this to work using useGameState and not props
     return (
       <div>
-        <GameText gameRound={gameRound} playerButton={playerButton}/>
+        <GameText gameRound={gameRound} playerButton={playerButton} />
       </div>
     );
   };
