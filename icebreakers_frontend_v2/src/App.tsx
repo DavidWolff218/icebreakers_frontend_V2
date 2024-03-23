@@ -10,7 +10,7 @@ import { UserData, RoomData, RoomInfo, User, Host } from "./types";
 function App() {
 
   const [roomInfo, setRoomInfo] = useState<RoomInfo>({
-    user: { userName: "", id: 0 },
+    user: { id: 0, userName: "" },
     roomName: "",
     host: { id: 0, hostName: "" },
     gameStarted: false,

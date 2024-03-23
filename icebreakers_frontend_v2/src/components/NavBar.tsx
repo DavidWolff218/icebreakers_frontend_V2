@@ -1,15 +1,21 @@
-const NavBar = () => {
+import { User, Host } from "../types";
+
+type NavProps = {
+  user: User,
+  host: Host,
+  handleLogOut: () => void
+}
+
+const NavBar = ({user, host, handleLogOut}: NavProps) => {
   const logOutBtn = (): JSX.Element => {
-    if (true) {
+    if (user.id === host.id) {
       return <button>ENDGAME</button>;
     } else {
-      return <button>LOGOUT</button>;
+      return <button onClick={handleLogOut}>LOGOUT</button>;
     }
   };
 
-  return <>
-  {logOutBtn()}
-  </>;
+  return <>{logOutBtn()}</>;
 };
 
 export default NavBar;

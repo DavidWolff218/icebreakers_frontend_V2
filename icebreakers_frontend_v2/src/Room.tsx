@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { API_ROOT } from "./constants";
 import NavBar from "./components/NavBar";
@@ -14,7 +14,10 @@ type RoomProps = {
 };
 
 const Room = ({ roomInfo }: RoomProps) => {
+  
   const { roomId } = useParams();
+
+  const navigate = useNavigate()
 
   const { user, roomName, host, gameStarted } = roomInfo;
 
@@ -52,7 +55,7 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   }, []);
 
-  const handleClick = async () => {
+  const handleNextClick = async () => {
     try {
       const reqObj = {
         method: "PATCH",
@@ -80,11 +83,41 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   const playerButton = () => {
     if (gameRound.currentPlayerID === user.id || user.id === host.id) {
-      return <button onClick={handleClick}>NEXT QUESTION</button>;
+      return <button onClick={handleNextClick}>NEXT QUESTION</button>;
     } else {
       return null;
     }
   };
+
+  const handleLogOut = async () => {
+    let id = user.id
+    if (gameRound.currentPlayerID === id) {
+      handleNextClick()
+    }
+    const reqObj = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          id: id,
+        },
+      }),
+    };
+    try {
+      await fetch(`${API_ROOT}/users/${id}`, reqObj)
+      localStorage.removeItem("token");
+      navigate('/', {replace: true} )
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const endGameBtn = () => {
+
+  }
 
   const handleStartClick = async () => {
     try {
@@ -140,7 +173,7 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar user={user} host={host} handleLogOut={handleLogOut} />
       <ActionCableConsumer
         channel={{
           channel: "UsersChannel",
