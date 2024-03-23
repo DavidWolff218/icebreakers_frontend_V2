@@ -55,6 +55,7 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
         console.error(resp);
       } else {
         const data = await resp.json()
+        localStorage.setItem("token", data.jwt);
         handleRoomData(data.room, data.user)
         navigate(`/room/${data.room.id}`)
       }

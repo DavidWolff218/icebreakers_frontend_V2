@@ -30,10 +30,6 @@ const GameText = ({
     );
   };
 
-  // const callReset = (resetFunc: ResetFunction) => {
-  //   setTimeout(resetFunc, 2000);
-  // };
-
   const loadingGameText = (): JSX.Element => {
     if (gameRound.reshufflingQuestions && gameRound.reshufflingUsers) {
       setTimeout(resetUsersandQuestionsShuffle, 2000);
