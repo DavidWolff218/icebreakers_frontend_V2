@@ -6,6 +6,7 @@ import { RoomInfo } from "./types";
 import WaitingRoom from "./components/WaitingRoom";
 import GameText from "./components/GameText";
 import UseGameState from "./hooks/useGameState";
+import EndGameModal from "./modals/endGameModal";
 // @ts-ignore
 import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 
@@ -205,6 +206,7 @@ const Room = ({ roomInfo }: RoomProps) => {
         handleLogOut={handleLogOut}
         handleEndGame={handleEndGame}
       />
+      {hostEnd && <EndGameModal />}
       <ActionCableConsumer
         channel={{
           channel: "UsersChannel",
