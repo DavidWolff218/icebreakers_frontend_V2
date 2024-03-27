@@ -115,8 +115,26 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   }
 
-  const endGameBtn = () => {
-
+  const endGameBtn = async () => {
+    const reqObj = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        room: {
+          id: roomId,
+        },
+      }),
+    };
+    await fetch(`${API_ROOT}/rooms/${roomId}`, reqObj)
+    try{
+      localStorage.removeItem("token");
+      navigate('/', {replace: true} )
+    } catch(error){
+      console.error(error)
+    }
   }
 
   const handleStartClick = async () => {
