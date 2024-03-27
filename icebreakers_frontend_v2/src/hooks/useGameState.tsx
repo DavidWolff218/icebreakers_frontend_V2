@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GameRound } from "../types";
 
 const UseGameState = () => {
+  
   const [hostEnd, setHostEnd] = useState(false);
 
   const [gameRound, setGameRound] = useState<GameRound>({

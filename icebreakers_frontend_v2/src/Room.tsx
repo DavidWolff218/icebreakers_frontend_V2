@@ -14,10 +14,9 @@ type RoomProps = {
 };
 
 const Room = ({ roomInfo }: RoomProps) => {
-  
   const { roomId } = useParams();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { user, roomName, host, gameStarted } = roomInfo;
 
@@ -55,6 +54,15 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (hostEnd) {
+      setTimeout(() => {
+        localStorage.removeItem("token");
+        navigate("/", { replace: true });
+      }, 5000);
+    }
+  }, [hostEnd]);
+
   const handleNextClick = async () => {
     try {
       const reqObj = {
@@ -90,9 +98,9 @@ const Room = ({ roomInfo }: RoomProps) => {
   };
 
   const handleLogOut = async () => {
-    let id = user.id
+    let id = user.id;
     if (gameRound.currentPlayerID === id) {
-      handleNextClick()
+      handleNextClick();
     }
     const reqObj = {
       method: "DELETE",
@@ -107,15 +115,15 @@ const Room = ({ roomInfo }: RoomProps) => {
       }),
     };
     try {
-      await fetch(`${API_ROOT}/users/${id}`, reqObj)
+      await fetch(`${API_ROOT}/users/${id}`, reqObj);
       localStorage.removeItem("token");
-      navigate('/', {replace: true} )
+      navigate("/", { replace: true });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
-  const endGameBtn = async () => {
+  const handleEndGame = async () => {
     const reqObj = {
       method: "DELETE",
       headers: {
@@ -128,14 +136,14 @@ const Room = ({ roomInfo }: RoomProps) => {
         },
       }),
     };
-    await fetch(`${API_ROOT}/rooms/${roomId}`, reqObj)
-    try{
+    await fetch(`${API_ROOT}/rooms/${roomId}`, reqObj);
+    try {
       localStorage.removeItem("token");
-      navigate('/', {replace: true} )
-    } catch(error){
-      console.error(error)
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   const handleStartClick = async () => {
     try {
@@ -191,7 +199,12 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   return (
     <div>
-      <NavBar user={user} host={host} handleLogOut={handleLogOut} />
+      <NavBar
+        user={user}
+        host={host}
+        handleLogOut={handleLogOut}
+        handleEndGame={handleEndGame}
+      />
       <ActionCableConsumer
         channel={{
           channel: "UsersChannel",
