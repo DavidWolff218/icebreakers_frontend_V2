@@ -227,6 +227,7 @@ const Room = ({ roomInfo }: RoomProps) => {
         host={host}
         handleLogOut={handleLogOut}
         handleEndGame={handleEndGame}
+        roomName={roomName}
       />
       {hostEnd && <EndGameModal />}
       <ActionCableConsumer
