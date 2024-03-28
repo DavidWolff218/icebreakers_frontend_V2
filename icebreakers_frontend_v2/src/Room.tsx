@@ -51,7 +51,29 @@ const Room = ({ roomInfo }: RoomProps) => {
       };
       fetchUsers();
     } else {
-      console.log("game started");
+      const fetchRound = async () => {
+        try {
+          const resp = await fetch(
+            `http://localhost:3000/users/midgame/${roomId}`
+          );
+          if (!resp.ok) {
+            console.log("there was an error");
+          }
+          const data = await resp.json();
+          console.log("here is the data", data);
+          setGameRound((prevState) => ({
+            ...prevState,
+            currentPlayer: data.currentPlayer.username,
+            currentPlayerID: data.currentPlayer.id,
+            currentQuestion: data.currentQuestion,
+            // allUsers: data.allUsers,
+            gameActive: data.room.game_started
+          }))
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchRound();
     }
   }, []);
 
