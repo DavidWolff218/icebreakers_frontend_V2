@@ -30,8 +30,9 @@ const Room = ({ roomInfo }: RoomProps) => {
     resetQuestionsShuffle,
     resetUsersShuffle,
   } = UseGameState();
-
+  
   useEffect(() => {
+    console.log("GAMESTARTED", gameStarted)
     if (!gameStarted) {
       const fetchUsers = async () => {
         try {
@@ -219,6 +220,8 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
     return null;
   };
+
+  console.log("GAMEROUND", gameRound)
 
   return (
     <div>

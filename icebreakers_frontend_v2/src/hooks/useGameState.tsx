@@ -27,7 +27,7 @@ const UseGameState = () => {
   // };
 
   const handleReceived = (resp: any) => {
-    console.log("recieved!!!", resp);
+    // console.log("recieved!!!", resp);
     if (resp.endGame) {
       //this resp only exists when the host ends game
       setHostEnd(true);
