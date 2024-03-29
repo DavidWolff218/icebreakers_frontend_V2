@@ -30,9 +30,8 @@ const Room = ({ roomInfo }: RoomProps) => {
     resetQuestionsShuffle,
     resetUsersShuffle,
   } = UseGameState();
-  
+
   useEffect(() => {
-    console.log("GAMESTARTED", gameStarted)
     if (!gameStarted) {
       const fetchUsers = async () => {
         try {
@@ -62,6 +61,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           }
           const data = await resp.json();
           console.log("here is the data", data);
+          console.log("ROOMINFO", roomInfo)
           setGameRound((prevState) => ({
             ...prevState,
             currentPlayer: data.currentPlayer.username,
@@ -81,7 +81,7 @@ const Room = ({ roomInfo }: RoomProps) => {
   useEffect(() => {
     if (hostEnd) {
       setTimeout(() => {
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         navigate("/", { replace: true });
       }, 5000);
     }
@@ -140,7 +140,7 @@ const Room = ({ roomInfo }: RoomProps) => {
     };
     try {
       await fetch(`${API_ROOT}/users/${id}`, reqObj);
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       navigate("/", { replace: true });
     } catch (error) {
       console.error(error);
@@ -162,7 +162,7 @@ const Room = ({ roomInfo }: RoomProps) => {
     };
     await fetch(`${API_ROOT}/rooms/${roomId}`, reqObj);
     try {
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       navigate("/", { replace: true });
     } catch (error) {
       console.error(error);

@@ -22,14 +22,15 @@ function App() {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
+        console.log("token checker", token)
         if (token) {
           const resp = await fetch(`http://localhost:3000/verify_token`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               Authorization: token,
-            },
+            }, 
           });
           if (resp.ok) {
             const data = await resp.json();
@@ -45,8 +46,9 @@ function App() {
             }
           } else {
             console.error("Token is invalid or missing");
+            //dont think i need this here
           }
-        }
+        } 
       } catch (error) {
         console.log(error);
       }
