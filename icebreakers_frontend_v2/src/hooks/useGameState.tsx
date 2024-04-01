@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GameRound } from "../types";
+import { GameRound } from "../types/types";
 
 const UseGameState = () => {
   

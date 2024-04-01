@@ -1,4 +1,4 @@
-import { Host, User, UserData } from "../types";
+import { Host, User, UserData } from "../types/types";
 
 type WaitingRoomProps = {
   host: Host;

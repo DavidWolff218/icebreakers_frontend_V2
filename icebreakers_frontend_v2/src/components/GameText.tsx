@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { GameRound } from "../types";
+import { GameRound } from "../types/types";
 
 type GameTextProps = {
   gameRound: GameRound;

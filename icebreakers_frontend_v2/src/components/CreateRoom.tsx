@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { API_ROOT } from "../constants";
-import { RoomData, UserData } from "../types";
+import { RoomData, UserData } from "../types/types";
 import { useNavigate } from 'react-router-dom'
+import { ReqObj, RoomForm } from "../types/types";
 
 type HomeProps = {
   handleRoomData: (room: RoomData, user: UserData) => void;
@@ -13,20 +14,6 @@ const CreateRoom = ({handleRoomData}: HomeProps) => {
 
   const [roomName, setRoomName] = useState("");
   const [hostName, setHostName] = useState("");
-
-  type RoomData = {
-    room_name: string;
-    username: string;
-  };
-
-  type ReqObj = {
-    method: string;
-    headers: {
-      "Content-Type": string;
-      Accept: string;
-    };
-    body: string;
-  };
 
   useEffect(() => {
     const fetchRoomCode = async () => {
@@ -59,7 +46,7 @@ const CreateRoom = ({handleRoomData}: HomeProps) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        room: { room_name: roomName, username: hostName } as RoomData,
+        room: { room_name: roomName, username: hostName } as RoomForm,
       }),
     };
 

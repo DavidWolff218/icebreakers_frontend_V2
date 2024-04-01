@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { RoomData, UserData } from "../types";
+import { RoomData, UserData } from "../types/types";
 import { API_ROOT } from "../constants";
 import { useNavigate } from "react-router-dom";
+import { ReqObj, RoomForm } from "../types/types";
 
 type JoinProps = {
   handleRoomData: (room: RoomData, user: UserData) => void
@@ -11,27 +12,13 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
 
   const navigate = useNavigate()
 
-  type ReqObj = {
-    method: string;
-    headers: {
-      "Content-Type": string;
-      Accept: string;
-    };
-    body: string;
-  };
-
-  type JoinForm = {
-    room_name: string;
-    username: string; 
-  };
-
-  const [joinForm, setJoinForm] = useState<JoinForm>({
+  const [joinForm, setJoinForm] = useState<RoomForm>({
     room_name: "",
     username: ""
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setJoinForm((prev: JoinForm) => ({
+    setJoinForm((prev: RoomForm) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
@@ -46,11 +33,11 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        room: joinForm,
+        room: joinForm as RoomForm,
       }),
     };
     try {
-      const resp = await fetch('http://localhost:3000/', reqObj);
+      const resp = await fetch(`${API_ROOT}`, reqObj);
       if (!resp.ok) {
         console.error(resp);
       } else {

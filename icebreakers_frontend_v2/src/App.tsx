@@ -2,14 +2,12 @@ import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link,
-  Navigate,
+  Route
 } from "react-router-dom";
 import Home from "./Home";
 import Room from "./Room";
 import "./CSS/App.css";
-import { UserData, RoomData, RoomInfo, User, Host } from "./types";
+import { UserData, RoomData, RoomInfo } from "./types/types";
 
 function App() {
   const [roomInfo, setRoomInfo] = useState<RoomInfo>({
@@ -35,8 +33,6 @@ function App() {
           if (resp.ok) {
             const data = await resp.json();
             if (data.room) {
-              console.log("token has been fetched", data);
-              //this can handle both the user and the host, but run into issues if the host has button when refreshes
               setRoomInfo({
                 user: { userName: data.user.username, id: data.user.id },
                 roomName: data.room.room_name,
@@ -46,7 +42,6 @@ function App() {
             }
           } else {
             console.error("Token is invalid or missing");
-            //dont think i need this here
           }
         } 
       } catch (error) {

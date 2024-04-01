@@ -23,11 +23,25 @@ export type UserData = {
   username: string;
 }
 
+export type ReqObj = {
+  method: string;
+  headers: {
+    "Content-Type": string;
+    Accept: string;
+  };
+  body: string;
+};
+
 export type RoomInfo = {
   user: User;
   roomName: string;
   host: Host;
   gameStarted: boolean;
+};
+
+export type RoomForm = {
+  room_name: string;
+  username: string; 
 };
 
 export type CurrentQuestion = {

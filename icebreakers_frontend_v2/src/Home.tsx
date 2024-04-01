@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CreateRoom from "./components/CreateRoom";
 import JoinRoom from "./components/JoinRoom";
-import { RoomData, UserData } from "./types";
+import { RoomData, UserData } from "./types/types";
 
 type HomeProps = {
   handleRoomData: (room: RoomData, user: UserData) => void;

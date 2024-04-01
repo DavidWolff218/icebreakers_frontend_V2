@@ -1,4 +1,4 @@
-import { User, Host } from "../types";
+import { User, Host } from "../types/types";
 
 
 type NavProps = {
