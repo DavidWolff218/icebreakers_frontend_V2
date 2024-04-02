@@ -14,7 +14,7 @@ function App() {
   const [roomInfo, setRoomInfo] = useState<RoomInfo>({
     user: { id: 0, userName: "" },
     roomName: "",
-    host: { id: 0, hostName: "" },
+    host: { id: 0, userName: "" },
     gameStarted: false,
   });
 
@@ -36,7 +36,7 @@ function App() {
               setRoomInfo({
                 user: { userName: data.user.username, id: data.user.id },
                 roomName: data.room.room_name,
-                host: { id: data.room.host_id, hostName: data.room.host_name },
+                host: { id: data.room.host_id, userName: data.room.host_name },
                 gameStarted: data.room.game_started,
               });
             }
@@ -55,7 +55,7 @@ function App() {
     setRoomInfo({
       user: { userName: user.username, id: user.id },
       roomName: room.room_name,
-      host: { id: room.host_id, hostName: room.host_name },
+      host: { id: room.host_id, userName: room.host_name },
       gameStarted: room.game_started,
     });
   };
