@@ -3,12 +3,16 @@ import { RoomData, UserData } from "../types/types";
 import { API_ROOT } from "../constants";
 import { useNavigate } from "react-router-dom";
 import { ReqObj, RoomForm } from "../types/types";
+import ErrorModal from "../modals/ErrorModal";
 
 type JoinProps = {
   handleRoomData: (room: RoomData, user: UserData) => void
 }
 
 const JoinRoom = ({handleRoomData}: JoinProps) => {
+
+  const [showError, setShowError] = useState(false);
+  const [errorText, setErrorText] = useState("");
 
   const navigate = useNavigate()
 
@@ -22,6 +26,12 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
       ...prevState,
       [event.target.name]: event.target.value,
     }));
+  };
+
+  const handleModal = () => {
+    setTimeout(() => {
+      setShowError(false);
+    }, 5000);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,20 +49,30 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
     try {
       const resp = await fetch(`${API_ROOT}`, reqObj);
       if (!resp.ok) {
-        console.error(resp);
+        const errorData = await resp.json();
+        setErrorText(errorData.error);
+        setShowError(true);
+        handleModal();
       } else {
         const data = await resp.json()
         sessionStorage.setItem("token", data.jwt);
         handleRoomData(data.room, data.user)
         navigate(`/room/${data.room.id}`)
       }
-    } catch(error) {
-      console.error("Error joining Room or creating Username:", error)
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorText(error.message);
+        setShowError(true);
+        handleModal();
+      } else {
+        console.error("An error occurred:", error);
+      }
     }
   };
 
   return (
     <div>
+      {showError && < ErrorModal errorText={errorText} />}
       <form onSubmit={handleSubmit}>
         <label>Room Code</label>
         <br />

@@ -39,7 +39,6 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
         }
       } catch (error) {
         if (error instanceof Error) {
-          console.log("ERROR", error)
           setErrorText(error.message);
           setShowError(true);
           handleModal();
