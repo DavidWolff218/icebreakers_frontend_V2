@@ -14,6 +14,7 @@ const CreateRoom = ({handleRoomData}: CreateProps) => {
 
   const [roomName, setRoomName] = useState("");
   const [hostName, setHostName] = useState("");
+  const [showError, setShowError] = useState(false)
 
   useEffect(() => {
     const fetchRoomCode = async () => {

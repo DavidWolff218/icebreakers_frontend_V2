@@ -1,11 +1,13 @@
 import { User, UserData } from "../types/types";
 
+
 type WaitingRoomProps = {
   host: User;
   user: User;
   handleStartClick: () => void;
   allUsers: UserData[];
 };
+
 
 const WaitingRoom = ({
   host,
@@ -48,6 +50,7 @@ const WaitingRoom = ({
       );
     }
   };
+
   return <> 
   {waitingRoomText()}
   

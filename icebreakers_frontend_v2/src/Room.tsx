@@ -219,8 +219,6 @@ const Room = ({ roomInfo }: RoomProps) => {
     return null;
   };
 
-  console.log("GAMEROUND", gameRound)
-
   return (
     <div>
       <NavBar
