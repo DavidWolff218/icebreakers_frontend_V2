@@ -1,9 +1,9 @@
-import { User, Host } from "../types/types";
+import { User } from "../types/types";
 
 
 type NavProps = {
   user: User,
-  host: Host,
+  host: User,
   handleLogOut: () => void
   handleEndGame: () => void
   roomName: string

@@ -1,7 +1,7 @@
-import { Host, User, UserData } from "../types/types";
+import { User, UserData } from "../types/types";
 
 type WaitingRoomProps = {
-  host: Host;
+  host: User;
   user: User;
   handleStartClick: () => void;
   allUsers: UserData[];
@@ -41,7 +41,7 @@ const WaitingRoom = ({
       return (
         <div>
           <h2>
-            The host, <span>{host.hostName}</span>, will start the game soon!
+            The host, <span>{host.userName}</span>, will start the game soon!
           </h2>
           {renderAllUsers(allUsers)}
         </div>

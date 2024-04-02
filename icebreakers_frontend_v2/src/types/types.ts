@@ -3,10 +3,10 @@ export type User = {
   userName: string;
 };
 
-export type Host = {
-  id: number;
-  hostName: string;
-};
+// export type Host = {
+//   id: number;
+//   hostName: string;
+// };
 
 
 export type RoomData = {
@@ -35,7 +35,7 @@ export type ReqObj = {
 export type RoomInfo = {
   user: User;
   roomName: string;
-  host: Host;
+  host: User;
   gameStarted: boolean;
 };
 
