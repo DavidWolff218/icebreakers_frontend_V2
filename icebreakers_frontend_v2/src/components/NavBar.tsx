@@ -21,6 +21,7 @@ const NavBar = ({user, host, handleLogOut, handleEndGame, roomName}: NavProps) =
 
   return <span>
   {logOutBtn()}
+  ** PLAYBREAKERS **
   Room: {roomName}
   </span>;
 };

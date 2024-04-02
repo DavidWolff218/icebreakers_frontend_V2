@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { API_ROOT } from "./constants";
 import NavBar from "./components/NavBar";
-import { RoomInfo } from "./types/types";
+import { RoomInfo, ReqObj } from "./types/types";
 import WaitingRoom from "./components/WaitingRoom";
 import GameText from "./components/GameText";
 import UseGameState from "./hooks/useGameState";
@@ -54,14 +54,12 @@ const Room = ({ roomInfo }: RoomProps) => {
       const fetchRound = async () => {
         try {
           const resp = await fetch(
-            `http://localhost:3000/users/midgame/${roomId}`
+            `${API_ROOT}/users/midgame/${roomId}`
           );
           if (!resp.ok) {
             console.log("there was an error");
           }
           const data = await resp.json();
-          console.log("here is the data", data);
-          console.log("ROOMINFO", roomInfo)
           setGameRound((prevState) => ({
             ...prevState,
             currentPlayer: data.currentPlayer.username,

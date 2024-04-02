@@ -8,6 +8,7 @@ import Home from "./Home";
 import Room from "./Room";
 import "./CSS/App.css";
 import { UserData, RoomData, RoomInfo } from "./types/types";
+import { API_ROOT } from "./constants";
 
 function App() {
   const [roomInfo, setRoomInfo] = useState<RoomInfo>({
@@ -21,9 +22,8 @@ function App() {
     const verifyToken = async () => {
       try {
         const token = sessionStorage.getItem("token");
-        console.log("token checker", token)
         if (token) {
-          const resp = await fetch(`http://localhost:3000/verify_token`, {
+          const resp = await fetch(`${API_ROOT}/verify_token`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

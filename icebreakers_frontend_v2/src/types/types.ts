@@ -27,7 +27,7 @@ export type ReqObj = {
   method: string;
   headers: {
     "Content-Type": string;
-    Accept: string;
+    Accept?: string;
   };
   body: string;
 };
