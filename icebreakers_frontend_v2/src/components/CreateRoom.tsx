@@ -4,11 +4,11 @@ import { RoomData, UserData } from "../types/types";
 import { useNavigate } from 'react-router-dom'
 import { ReqObj, RoomForm } from "../types/types";
 
-type HomeProps = {
+type CreateProps = {
   handleRoomData: (room: RoomData, user: UserData) => void;
 }
 
-const CreateRoom = ({handleRoomData}: HomeProps) => {
+const CreateRoom = ({handleRoomData}: CreateProps) => {
 
   const navigate = useNavigate()
 

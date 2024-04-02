@@ -2,11 +2,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { API_ROOT } from "./constants";
 import NavBar from "./components/NavBar";
-import { RoomInfo, ReqObj } from "./types/types";
+import { RoomInfo } from "./types/types";
 import WaitingRoom from "./components/WaitingRoom";
 import GameText from "./components/GameText";
 import UseGameState from "./hooks/useGameState";
-import EndGameModal from "./modals/endGameModal";
+import EndGameModal from "./modals/EndGameModal";
 // @ts-ignore
 import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 

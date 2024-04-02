@@ -3,12 +3,6 @@ export type User = {
   userName: string;
 };
 
-// export type Host = {
-//   id: number;
-//   hostName: string;
-// };
-
-
 export type RoomData = {
   room_name: string;
   host_id: number;
