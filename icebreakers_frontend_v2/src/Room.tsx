@@ -35,7 +35,7 @@ const Room = ({ roomInfo }: RoomProps) => {
     if (!gameStarted) {
       const fetchUsers = async () => {
         try {
-          const resp = await fetch(`${API_ROOT}/users/by_room/${roomId}`);
+          const resp = await fetch(`${API_ROOT}/uers/by_room/${roomId}`);
           if (!resp.ok) {
             throw new Error("Could not grab all users");
           } else {

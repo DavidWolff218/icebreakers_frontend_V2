@@ -26,7 +26,7 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
   useEffect(() => {
     const fetchRoomCode = async () => {
       try {
-        const resp = await fetch(`${API_ROOT}/rooms/room_code`);
+        const resp = await fetch(`${API_ROOT}/roms/room_code`);
         if (!resp.ok) {
           console.log("this is the error that is running")
           const errorData = await resp.json();
@@ -42,6 +42,7 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
           setErrorText(error.message);
           setShowError(true);
           handleModal();
+          // throw new Error ("this is the new message")
         } else {
           console.error("An error occurred:", error);
         }
