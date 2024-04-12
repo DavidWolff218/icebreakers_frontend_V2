@@ -43,7 +43,7 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        room: joinForm as RoomForm,
+        room: joinForm,
       }),
     };
     try {

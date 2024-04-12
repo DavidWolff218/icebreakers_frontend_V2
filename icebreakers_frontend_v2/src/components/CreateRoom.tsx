@@ -26,7 +26,7 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
   useEffect(() => {
     const fetchRoomCode = async () => {
       try {
-        const resp = await fetch(`${API_ROOT}/roms/room_code`);
+        const resp = await fetch(`${API_ROOT}/rooms/room_code`);
         if (!resp.ok) {
           console.log("this is the error that is running")
           const errorData = await resp.json();
@@ -65,7 +65,7 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        room: { room_name: roomName, username: hostName } as RoomForm,
+        room: { room_name: roomName, username: hostName } ,
       }),
     };
 
@@ -96,8 +96,7 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
   const renderForm = (): JSX.Element => {
     return (
       <div>
-        Room Name
-        {roomName}
+        Room Name: {roomName}
         <form onSubmit={handleSubmit}>
           <label>Enter Host Name</label>
           <input

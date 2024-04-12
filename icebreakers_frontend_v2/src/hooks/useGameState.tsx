@@ -21,13 +21,7 @@ const UseGameState = () => {
     // ^^ to be used for voting feature
   });
 
-  // const setGameRoundWithLogging = (newGameRound: GameRound) => {
-  //   console.log("Setting gameRound to:", newGameRound);
-  //   setGameRound(newGameRound);
-  // };
-
   const handleReceived = (resp: any) => {
-    // console.log("recieved!!!", resp);
     if (resp.endGame) {
       //this resp only exists when the host ends game
       setHostEnd(true);
