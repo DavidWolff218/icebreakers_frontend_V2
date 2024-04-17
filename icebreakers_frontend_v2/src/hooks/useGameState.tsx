@@ -8,6 +8,7 @@ const UseGameState = () => {
   const [gameRound, setGameRound] = useState<GameRound>({
     currentPlayer: "",
     currentPlayerID: 0,
+    nextPlayer: {id: 0, userName: ""},
     currentQuestion: { id: 0, content: "" },
     reshufflingUsers: false,
     reshufflingQuestions: false,
@@ -26,10 +27,12 @@ const UseGameState = () => {
       //this resp only exists when the host ends game
       setHostEnd(true);
     } else if (resp.room && resp.room.game_started && resp.currentQuestion) {
+      console.log("resp", resp)
       //for use when game has started and players is active in game, resp.currentQuestion filters out players joining midgame
       setGameRound({
         currentPlayer: resp.currentPlayer.username,
         currentPlayerID: resp.currentPlayer.id,
+        nextPlayer: resp.nextPlayer,
         currentQuestion: resp.currentQuestion,
         reshufflingUsers: resp.reshufflingUsers,
         reshufflingQuestions: resp.reshufflingQuestions,

@@ -85,6 +85,8 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   }, [hostEnd]);
 
+console.log("gameRound", gameRound)
+
   const handleNextClick = async () => {
     try {
       const reqObj = {

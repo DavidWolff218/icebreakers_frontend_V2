@@ -46,6 +46,7 @@ export type CurrentQuestion = {
 export type GameRound = {
     currentPlayer: string,
     currentPlayerID: number,
+    nextPlayer: User,
     currentQuestion: CurrentQuestion,
     reshufflingUsers: boolean,
     reshufflingQuestions: boolean,
