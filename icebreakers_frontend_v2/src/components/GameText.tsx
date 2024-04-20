@@ -18,12 +18,14 @@ const GameText = ({
   resetQuestionsShuffle,
   resetUsersShuffle,
 }: GameTextProps) => {
+  
   const renderGameText = (): JSX.Element => {
     return (
       <div>
-        {gameRound.currentPlayer}
+        Next up: {gameRound.nextPlayer.username}
         <br></br>
-        {gameRound.currentQuestion.content}
+        <h3>{gameRound.currentPlayer}</h3>
+        <h3>{gameRound.currentQuestion.content}</h3>
         <br></br>
         {playerButton()}
       </div>

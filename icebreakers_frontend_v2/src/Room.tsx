@@ -98,12 +98,14 @@ console.log("gameRound", gameRound)
           user: {
             room: roomId,
             currentPlayerID: gameRound.currentPlayerID,
+            nextPlayer: gameRound.nextPlayer.id
           },
           question: {
             id: gameRound.currentQuestion.id,
           },
         }),
       };
+      console.log("reqobj", reqObj)
       const resp = await fetch(`${API_ROOT}/users/select`, reqObj);
       if (!resp.ok) {
         console.log("Could no get next question");
