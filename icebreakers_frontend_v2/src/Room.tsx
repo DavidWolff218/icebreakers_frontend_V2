@@ -63,7 +63,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           setGameRound((prevState) => ({
             ...prevState,
             currentPlayer: data.currentPlayer.username,
-
+            currentPlayerID: data.currentPlayer.id,
             currentQuestion: data.currentQuestion,
             // allUsers: data.allUsers,
             gameActive: data.room.game_started
