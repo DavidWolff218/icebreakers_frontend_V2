@@ -1,6 +1,6 @@
 export type User = {
   id: number;
-  userName: string;
+  username: string;
 };
 
 export type RoomData = {
@@ -44,9 +44,9 @@ export type CurrentQuestion = {
 }
 
 export type GameRound = {
-    currentPlayer: string,
-    currentPlayerID: number,
-    nextPlayer: User,
+    currentPlayer: User,
+    // currentPlayerID: number,
+    nextPlayer: User
     currentQuestion: CurrentQuestion,
     reshufflingUsers: boolean,
     reshufflingQuestions: boolean,
