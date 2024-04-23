@@ -24,7 +24,7 @@ const GameText = ({
       <div>
         Next up: {gameRound.nextPlayer.username}
         <br></br>
-        <h3>{gameRound.currentPlayer}</h3>
+        <h3>{gameRound.currentPlayer.username}</h3>
         <h3>{gameRound.currentQuestion.content}</h3>
         <br></br>
         {playerButton()}
