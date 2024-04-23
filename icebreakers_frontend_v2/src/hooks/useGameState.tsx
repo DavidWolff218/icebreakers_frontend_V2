@@ -30,6 +30,7 @@ const UseGameState = () => {
       console.log("resp", resp)
       //for use when game has started and players is active in game, resp.currentQuestion filters out players joining midgame
       setGameRound({
+
         currentPlayer: resp.currentPlayer.username,
         currentPlayerID: resp.currentPlayer.id,
         nextPlayer: resp.nextPlayer,
