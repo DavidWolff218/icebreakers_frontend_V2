@@ -43,7 +43,7 @@ const WaitingRoom = ({
       return (
         <div>
           <h2>
-            The host, <span>{host.username}</span>, will start the game soon!
+            The host, <span>{host.userName}</span>, will start the game soon!
           </h2>
           {renderAllUsers(allUsers)}
         </div>

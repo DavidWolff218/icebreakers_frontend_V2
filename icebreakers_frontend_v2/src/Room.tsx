@@ -62,8 +62,8 @@ const Room = ({ roomInfo }: RoomProps) => {
           const data = await resp.json();
           setGameRound((prevState) => ({
             ...prevState,
-            currentPlayer: data.currentPlayer,
-            // currentPlayerID: data.currentPlayer.id,
+            currentPlayer: data.currentPlayer.username,
+            currentPlayerID: data.currentPlayer.id,
             currentQuestion: data.currentQuestion,
             // allUsers: data.allUsers,
             gameActive: data.room.game_started
@@ -97,15 +97,13 @@ console.log("gameRound", gameRound)
         body: JSON.stringify({
           user: {
             room: roomId,
-            currentPlayerID: gameRound.currentPlayer.id,
-            nextPlayer: gameRound.nextPlayer.id
+            currentPlayerID: gameRound.currentPlayerID,
           },
           question: {
             id: gameRound.currentQuestion.id,
           },
         }),
       };
-      console.log("reqobj", reqObj)
       const resp = await fetch(`${API_ROOT}/users/select`, reqObj);
       if (!resp.ok) {
         console.log("Could no get next question");
@@ -116,7 +114,7 @@ console.log("gameRound", gameRound)
   };
 
   const playerButton = () => {
-    if (gameRound.currentPlayer.id === user.id || user.id === host.id) {
+    if (gameRound.currentPlayerID === user.id || user.id === host.id) {
       return <button onClick={handleNextClick}>NEXT QUESTION</button>;
     } else {
       return null;
@@ -124,8 +122,8 @@ console.log("gameRound", gameRound)
   };
 
   const handleLogOut = async () => {
-    // let id = user.id;
-    if (gameRound.currentPlayer.id === user.id) {
+    let id = user.id;
+    if (gameRound.currentPlayerID === id) {
       handleNextClick();
     }
     const reqObj = {
@@ -136,12 +134,12 @@ console.log("gameRound", gameRound)
       },
       body: JSON.stringify({
         user: {
-          id: user.id,
+          id: id,
         },
       }),
     };
     try {
-      await fetch(`${API_ROOT}/users/${user.id}`, reqObj);
+      await fetch(`${API_ROOT}/users/${id}`, reqObj);
       sessionStorage.removeItem("token");
       navigate("/", { replace: true });
     } catch (error) {
