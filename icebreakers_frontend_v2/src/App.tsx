@@ -12,9 +12,9 @@ import { API_ROOT } from "./constants";
 
 function App() {
   const [roomInfo, setRoomInfo] = useState<RoomInfo>({
-    user: { id: 0, username: "" },
+    user: { id: 0, userName: "" },
     roomName: "",
-    host: { id: 0, username: "" },
+    host: { id: 0, userName: "" },
     gameStarted: false,
   });
 
@@ -34,9 +34,9 @@ function App() {
             const data = await resp.json();
             if (data.room) {
               setRoomInfo({
-                user: { username: data.user.username, id: data.user.id },
+                user: { userName: data.user.username, id: data.user.id },
                 roomName: data.room.room_name,
-                host: { id: data.room.host_id, username: data.room.host_name },
+                host: { id: data.room.host_id, userName: data.room.host_name },
                 gameStarted: data.room.game_started,
               });
             }
@@ -53,9 +53,9 @@ function App() {
 
   const handleRoomData = (room: RoomData, user: UserData) => {
     setRoomInfo({
-      user: { username: user.username, id: user.id },
+      user: { userName: user.username, id: user.id },
       roomName: room.room_name,
-      host: { id: room.host_id, username: room.host_name },
+      host: { id: room.host_id, userName: room.host_name },
       gameStarted: room.game_started,
     });
   };
