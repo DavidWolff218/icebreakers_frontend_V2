@@ -7,7 +7,6 @@ const UseGameState = () => {
 
   const [gameRound, setGameRound] = useState<GameRound>({
     currentPlayer: {id: 0, username: ""},
-    // currentPlayerID: 0,
     nextPlayer: {id: 0, username: ""},
     currentQuestion: { id: 0, content: "" },
     reshufflingUsers: false,
