@@ -4,6 +4,7 @@ import { RoomData, UserData } from "../types/types";
 import { useNavigate } from "react-router-dom";
 import { ReqObj, RoomForm } from "../types/types";
 import ErrorModal from "../modals/ErrorModal";
+import { hostname } from "os";
 
 type CreateProps = {
   handleRoomData: (room: RoomData, user: UserData) => void;
@@ -20,6 +21,7 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
   const handleModal = () => {
     setTimeout(() => {
       setShowError(false);
+      setErrorText("")
     }, 5000);
   };
 
@@ -56,6 +58,13 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if(hostName.length < 2 || hostName.length > 20 ){
+      setErrorText("Your name must be greater than or less than 20 chacters in length");
+      setShowError(true);
+      handleModal();
+      return
+    }
 
     const reqObj: ReqObj = {
       method: "POST",
