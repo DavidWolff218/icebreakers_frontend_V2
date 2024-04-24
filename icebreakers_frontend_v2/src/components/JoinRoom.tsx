@@ -31,11 +31,19 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
   const handleModal = () => {
     setTimeout(() => {
       setShowError(false);
+      setErrorText("")
     }, 5000);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    if(joinForm.username.length < 2 || joinForm.username.length > 20 ){
+      setErrorText("Your name must be greater than or less than 20 chacters in length");
+      setShowError(true);
+      handleModal();
+      return
+    }
     const reqObj: ReqObj = {
       method: "POST",
       headers: {
