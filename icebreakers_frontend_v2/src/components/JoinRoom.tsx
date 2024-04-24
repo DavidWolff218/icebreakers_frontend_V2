@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { RoomData, UserData } from "../types/types";
+import { RoomData, User } from "../types/types";
 import { API_ROOT } from "../constants";
 import { useNavigate } from "react-router-dom";
 import { ReqObj, RoomForm } from "../types/types";
 import ErrorModal from "../modals/ErrorModal";
 
 type JoinProps = {
-  handleRoomData: (room: RoomData, user: UserData) => void
+  handleRoomData: (room: RoomData, user: User) => void
 }
 
 const JoinRoom = ({handleRoomData}: JoinProps) => {

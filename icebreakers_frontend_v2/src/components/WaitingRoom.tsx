@@ -1,11 +1,11 @@
-import { User, UserData } from "../types/types";
+import { User } from "../types/types";
 
 
 type WaitingRoomProps = {
   host: User;
   user: User;
   handleStartClick: () => void;
-  allUsers: UserData[];
+  allUsers: User[];
 };
 
 
