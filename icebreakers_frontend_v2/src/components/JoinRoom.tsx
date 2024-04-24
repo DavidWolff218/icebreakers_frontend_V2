@@ -22,7 +22,7 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setJoinForm((prevState: RoomForm) => ({
+    setJoinForm((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
