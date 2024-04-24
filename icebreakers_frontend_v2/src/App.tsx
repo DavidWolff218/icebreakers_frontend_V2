@@ -7,7 +7,7 @@ import {
 import Home from "./Home";
 import Room from "./Room";
 import "./CSS/App.css";
-import { UserData, RoomData, RoomInfo } from "./types/types";
+import { User, RoomData, RoomInfo } from "./types/types";
 import { API_ROOT } from "./constants";
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
     verifyToken();
   }, []);
 
-  const handleRoomData = (room: RoomData, user: UserData) => {
+  const handleRoomData = (room: RoomData, user: User) => {
     setRoomInfo({
       user: { username: user.username, id: user.id },
       roomName: room.room_name,

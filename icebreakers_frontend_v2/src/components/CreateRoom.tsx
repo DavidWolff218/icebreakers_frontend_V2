@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { API_ROOT } from "../constants";
-import { RoomData, UserData } from "../types/types";
+import { RoomData, User } from "../types/types";
 import { useNavigate } from "react-router-dom";
 import { ReqObj, RoomForm } from "../types/types";
 import ErrorModal from "../modals/ErrorModal";
 import { hostname } from "os";
 
 type CreateProps = {
-  handleRoomData: (room: RoomData, user: UserData) => void;
+  handleRoomData: (room: RoomData, user: User) => void;
 };
 
 const CreateRoom = ({ handleRoomData }: CreateProps) => {

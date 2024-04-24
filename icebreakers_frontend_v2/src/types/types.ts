@@ -10,13 +10,6 @@ export type RoomData = {
   game_started: false;
 }
 
-export type UserData = {
-  id: number;
-  is_active?: boolean;
-  is_selected?: boolean;
-  username: string;
-}
-
 export type ReqObj = {
   method: string;
   headers: {
@@ -48,6 +41,6 @@ export type GameRound = {
     nextPlayer: User
     currentQuestion: CurrentQuestion,
     reshufflingQuestions: boolean,
-    allUsers: UserData[],
+    allUsers: User[],
     gameActive: boolean,
 }
