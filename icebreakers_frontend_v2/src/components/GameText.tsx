@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
 import { GameRound } from "../types/types";
-import UseGameState from "../hooks/useGameState";
-
 
 
 type GameTextProps = {
@@ -18,16 +16,6 @@ const GameText = ({
 
   resetQuestionsShuffle,
 }: GameTextProps) => {
-
-  const {
-    gameRound: hookGameRound,
-    setGameRound,
-    handleReceived,
-    hostEnd,
-
-  } = UseGameState();
-  
-  console.log("gameRound from GameText", hookGameRound)
 
   const renderGameText = (): JSX.Element => {
     return (

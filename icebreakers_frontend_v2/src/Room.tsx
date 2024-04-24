@@ -31,6 +31,7 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   useEffect(() => {
     if (!gameStarted) {
+      console.log("gameStarted == false")
       const fetchUsers = async () => {
         try {
           const resp = await fetch(`${API_ROOT}/users/by_room/${roomId}`);
@@ -49,6 +50,8 @@ const Room = ({ roomInfo }: RoomProps) => {
       };
       fetchUsers();
     } else {
+      console.log("gameStarted == true")
+
       const fetchRound = async () => {
         try {
           const resp = await fetch(
@@ -82,8 +85,6 @@ const Room = ({ roomInfo }: RoomProps) => {
       }, 5000);
     }
   }, [hostEnd]);
-
-console.log("gameRound from Room.tsx", gameRound)
 
   const handleNextClick = async () => {
     try {
@@ -183,10 +184,15 @@ console.log("gameRound from Room.tsx", gameRound)
       };
       const resp = await fetch(`${API_ROOT}/users/start`, reqObj);
       if (!resp.ok) {
-        throw new Error(`HTTP error! Status: ${resp.status}`);
+        console.log("in the if")
+        const errorData = await resp.json();
+      throw new Error(errorData.error || `HTTP error! Status: ${resp.status}`);
       }
     } catch (error) {
-      throw error;
+      console.log("in the catch")
+
+      console.error(error);
+    alert(error);
     }
   };
 
