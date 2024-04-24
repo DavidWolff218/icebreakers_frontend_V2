@@ -28,7 +28,6 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
       try {
         const resp = await fetch(`${API_ROOT}/rooms/room_code`);
         if (!resp.ok) {
-          console.log("this is the error that is running")
           const errorData = await resp.json();
           setErrorText(errorData.error);
           setShowError(true);

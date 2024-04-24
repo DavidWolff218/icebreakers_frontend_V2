@@ -9,7 +9,6 @@ const UseGameState = () => {
     currentPlayer: {id: 0, username: ""},
     nextPlayer: {id: 0, username: ""},
     currentQuestion: { id: 0, content: "" },
-    reshufflingUsers: false,
     reshufflingQuestions: false,
     allUsers: [],
     gameActive: false,
@@ -26,14 +25,12 @@ const UseGameState = () => {
       //this resp only exists when the host ends game
       setHostEnd(true);
     } else if (resp.room && resp.room.game_started && resp.currentQuestion) {
-      console.log("resp", resp)
       //for use when game has started and players is active in game, resp.currentQuestion filters out players joining midgame
       setGameRound({
         currentPlayer: resp.currentPlayer,
         // currentPlayerID: resp.currentPlayer.id,
         nextPlayer: resp.nextPlayer,
         currentQuestion: resp.currentQuestion,
-        reshufflingUsers: resp.reshufflingUsers,
         reshufflingQuestions: resp.reshufflingQuestions,
         allUsers: resp.allUsers,
         gameActive: resp.room.game_started,
@@ -48,12 +45,6 @@ const UseGameState = () => {
     }
   };
 
-  const resetUsersShuffle = () => {
-    setGameRound((prevState) => ({
-      ...prevState,
-      reshufflingUsers: false,
-    }));
-  };
 
   const resetQuestionsShuffle = () => {
     setGameRound((prevState) => ({
@@ -62,13 +53,6 @@ const UseGameState = () => {
     }));
   };
 
-  const resetUsersAndQuestionsShuffle = () => {
-    setGameRound((prevState) => ({
-      ...prevState,
-      reshufflingQuestions: false,
-      reshufflingUsers: false,
-    }));
-  };
 
   return {
     gameRound,
@@ -76,8 +60,6 @@ const UseGameState = () => {
     handleReceived,
     hostEnd,
     resetQuestionsShuffle,
-    resetUsersShuffle,
-    resetUsersAndQuestionsShuffle,
   };
 };
 

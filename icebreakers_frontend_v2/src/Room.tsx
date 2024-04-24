@@ -26,9 +26,7 @@ const Room = ({ roomInfo }: RoomProps) => {
     setGameRound,
     handleReceived,
     hostEnd,
-    resetUsersAndQuestionsShuffle,
     resetQuestionsShuffle,
-    resetUsersShuffle,
   } = UseGameState();
 
   useEffect(() => {
@@ -85,7 +83,7 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   }, [hostEnd]);
 
-console.log("gameRound", gameRound)
+console.log("gameRound from Room.tsx", gameRound)
 
   const handleNextClick = async () => {
     try {
@@ -105,7 +103,6 @@ console.log("gameRound", gameRound)
           },
         }),
       };
-      console.log("reqobj", reqObj)
       const resp = await fetch(`${API_ROOT}/users/select`, reqObj);
       if (!resp.ok) {
         console.log("Could no get next question");
@@ -200,9 +197,7 @@ console.log("gameRound", gameRound)
         <GameText
           gameRound={gameRound}
           playerButton={playerButton}
-          resetUsersandQuestionsShuffle={resetUsersAndQuestionsShuffle}
           resetQuestionsShuffle={resetQuestionsShuffle}
-          resetUsersShuffle={resetUsersShuffle}
         />
       </div>
     );

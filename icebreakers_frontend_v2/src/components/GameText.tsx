@@ -1,12 +1,13 @@
 import { ReactNode } from "react";
 import { GameRound } from "../types/types";
+import UseGameState from "../hooks/useGameState";
+
+
 
 type GameTextProps = {
   gameRound: GameRound;
   playerButton: () => ReactNode;
-  resetUsersandQuestionsShuffle: ResetFunction;
   resetQuestionsShuffle: ResetFunction;
-  resetUsersShuffle: ResetFunction;
 };
 
 type ResetFunction = () => void;
@@ -14,11 +15,20 @@ type ResetFunction = () => void;
 const GameText = ({
   gameRound,
   playerButton,
-  resetUsersandQuestionsShuffle,
+
   resetQuestionsShuffle,
-  resetUsersShuffle,
 }: GameTextProps) => {
+
+  const {
+    gameRound: hookGameRound,
+    setGameRound,
+    handleReceived,
+    hostEnd,
+
+  } = UseGameState();
   
+  console.log("gameRound from GameText", hookGameRound)
+
   const renderGameText = (): JSX.Element => {
     return (
       <div>
@@ -33,15 +43,9 @@ const GameText = ({
   };
 
   const loadingGameText = (): JSX.Element => {
-    if (gameRound.reshufflingQuestions && gameRound.reshufflingUsers) {
-      setTimeout(resetUsersandQuestionsShuffle, 2000);
-      return <div>Reshuffling Users and Questions</div>;
-    } else if (gameRound.reshufflingQuestions) {
+    if (gameRound.reshufflingQuestions) {
       setTimeout(resetQuestionsShuffle, 2000);
       return <div>Reshuffling Questions</div>;
-    } else if (gameRound.reshufflingUsers) {
-      setTimeout(resetUsersShuffle, 2000);
-      return <div>Reshuffling Users</div>;
     } else {
       return renderGameText();
     }
