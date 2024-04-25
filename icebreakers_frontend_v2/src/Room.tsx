@@ -27,6 +27,8 @@ const Room = ({ roomInfo }: RoomProps) => {
     handleReceived,
     hostEnd,
     resetQuestionsShuffle,
+    allUsers,
+    setAllUsers
   } = UseGameState();
 
   useEffect(() => {
@@ -38,10 +40,11 @@ const Room = ({ roomInfo }: RoomProps) => {
             throw new Error("Could not grab all users");
           } else {
             const data = await resp.json();
-            setGameRound((prevState) => ({
-              ...prevState,
-              allUsers: data.allUsers,
-            }));
+            // setGameRound((prevState) => ({
+            //   ...prevState,
+            //   allUsers: data.allUsers,
+            // }));
+            setAllUsers(data.allUsers)
           }
         } catch (error) {
           alert(error);
@@ -216,7 +219,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           host={host}
           user={user}
           handleStartClick={handleStartClick}
-          allUsers={gameRound.allUsers}
+          allUsers={allUsers}
         />
       );
     }

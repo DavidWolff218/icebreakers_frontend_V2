@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { GameRound } from "../types/types";
+import { GameRound, User } from "../types/types";
 
 const UseGameState = () => {
   
   const [hostEnd, setHostEnd] = useState(false);
+
+  const [allUsers, setAllUsers] = useState<User[]>([])
 
   const [gameRound, setGameRound] = useState<GameRound>({
     currentPlayer: {id: 0, username: ""},
@@ -37,10 +39,11 @@ const UseGameState = () => {
       });
     } else if (resp.room && !resp.room.game_started) {
       //used for updating lobby of users as new ones come in
-      setGameRound((prevState) => ({
-        ...prevState,
-        allUsers: resp.allUsers,
-      }));
+      // setGameRound((prevState) => ({
+      //   ...prevState,
+      //   allUsers: resp.allUsers,
+      // }));
+      setAllUsers(resp.allUsers)
     }
   };
 
@@ -59,6 +62,8 @@ const UseGameState = () => {
     handleReceived,
     hostEnd,
     resetQuestionsShuffle,
+    allUsers, 
+    setAllUsers
   };
 };
 
