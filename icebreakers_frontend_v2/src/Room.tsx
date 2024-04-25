@@ -28,7 +28,7 @@ const Room = ({ roomInfo }: RoomProps) => {
     hostEnd,
     resetQuestionsShuffle,
     allUsers,
-    setAllUsers
+    setAllUsers,
   } = UseGameState();
 
   useEffect(() => {
@@ -40,11 +40,7 @@ const Room = ({ roomInfo }: RoomProps) => {
             throw new Error("Could not grab all users");
           } else {
             const data = await resp.json();
-            // setGameRound((prevState) => ({
-            //   ...prevState,
-            //   allUsers: data.allUsers,
-            // }));
-            setAllUsers(data.allUsers)
+            setAllUsers(data.allUsers);
           }
         } catch (error) {
           alert(error);
@@ -52,13 +48,11 @@ const Room = ({ roomInfo }: RoomProps) => {
       };
       fetchUsers();
     } else {
-      console.log("gameStarted == true")
+      console.log("gameStarted == true");
 
       const fetchRound = async () => {
         try {
-          const resp = await fetch(
-            `${API_ROOT}/users/midgame/${roomId}`
-          );
+          const resp = await fetch(`${API_ROOT}/users/midgame/${roomId}`);
           if (!resp.ok) {
             console.log("there was an error");
           }
@@ -68,9 +62,8 @@ const Room = ({ roomInfo }: RoomProps) => {
             currentPlayer: data.currentPlayer,
             nextPlayer: data.nextPlayer,
             currentQuestion: data.currentQuestion,
-            // allUsers: data.allUsers,
-            gameActive: data.room.game_started
-          }))
+            gameActive: data.room.game_started,
+          }));
         } catch (error) {
           console.error(error);
         }
@@ -99,7 +92,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           user: {
             room: roomId,
             currentPlayerID: gameRound.currentPlayer.id,
-            nextPlayer: gameRound.nextPlayer.id
+            nextPlayer: gameRound.nextPlayer.id,
           },
           question: {
             id: gameRound.currentQuestion.id,
@@ -186,15 +179,17 @@ const Room = ({ roomInfo }: RoomProps) => {
       };
       const resp = await fetch(`${API_ROOT}/users/start`, reqObj);
       if (!resp.ok) {
-        console.log("in the if")
+        console.log("in the if");
         const errorData = await resp.json();
-      throw new Error(errorData.error || `HTTP error! Status: ${resp.status}`);
+        throw new Error(
+          errorData.error || `HTTP error! Status: ${resp.status}`
+        );
       }
     } catch (error) {
-      console.log("in the catch")
+      console.log("in the catch");
 
       console.error(error);
-    alert(error);
+      alert(error);
     }
   };
 

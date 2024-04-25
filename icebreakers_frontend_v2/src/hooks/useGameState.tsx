@@ -12,7 +12,6 @@ const UseGameState = () => {
     nextPlayer: {id: 0, username: ""},
     currentQuestion: { id: 0, content: "" },
     reshufflingQuestions: false,
-    allUsers: [],
     gameActive: false,
     // votingQuestionA: "",
     // votingQuestionB: "",
@@ -33,16 +32,11 @@ const UseGameState = () => {
         nextPlayer: resp.nextPlayer,
         currentQuestion: resp.currentQuestion,
         reshufflingQuestions: resp.reshufflingQuestions,
-        allUsers: resp.allUsers,
         gameActive: resp.room.game_started,
         // add voting timer stuff here
       });
     } else if (resp.room && !resp.room.game_started) {
       //used for updating lobby of users as new ones come in
-      // setGameRound((prevState) => ({
-      //   ...prevState,
-      //   allUsers: resp.allUsers,
-      // }));
       setAllUsers(resp.allUsers)
     }
   };
