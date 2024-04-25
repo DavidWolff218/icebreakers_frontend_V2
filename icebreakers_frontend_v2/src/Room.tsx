@@ -31,7 +31,6 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   useEffect(() => {
     if (!gameStarted) {
-      console.log("gameStarted == false")
       const fetchUsers = async () => {
         try {
           const resp = await fetch(`${API_ROOT}/users/by_room/${roomId}`);
@@ -64,7 +63,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           setGameRound((prevState) => ({
             ...prevState,
             currentPlayer: data.currentPlayer,
-            // currentPlayerID: data.currentPlayer.id,
+            nextPlayer: data.nextPlayer,
             currentQuestion: data.currentQuestion,
             // allUsers: data.allUsers,
             gameActive: data.room.game_started
