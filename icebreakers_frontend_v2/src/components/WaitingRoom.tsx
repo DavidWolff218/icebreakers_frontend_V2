@@ -1,6 +1,5 @@
 import { User } from "../types/types";
 
-
 type WaitingRoomProps = {
   host: User;
   user: User;
@@ -8,34 +7,28 @@ type WaitingRoomProps = {
   allUsers: User[];
 };
 
-
 const WaitingRoom = ({
   host,
   user,
   allUsers,
   handleStartClick,
 }: WaitingRoomProps) => {
-
   const startButton = () => {
     return <button onClick={handleStartClick}>Start The Game</button>;
   };
 
-  const renderAllUsers = (allUsers:any): JSX.Element[] => {
-   return allUsers.map((user:any) => {
-     return <h2 key={user.id}>{user.username}</h2>
-   }
-   )
-  }
+  const renderAllUsers = (allUsers: User[]): JSX.Element[] => {
+    return allUsers.map((user: any) => {
+      return <h2 key={user.id}>{user.username}</h2>;
+    });
+  };
 
   const waitingRoomText = () => {
     if (host.id === user.id) {
       return (
         <h2>
           As the host, you can start the game whenever your party is ready!
-          <div>
-
-          {renderAllUsers(allUsers)}
-          </div>
+          <div>{renderAllUsers(allUsers)}</div>
           {startButton()}
         </h2>
       );
@@ -51,10 +44,7 @@ const WaitingRoom = ({
     }
   };
 
-  return <> 
-  {waitingRoomText()}
-  
-  </>;
+  return <>{waitingRoomText()}</>;
 };
 
 export default WaitingRoom;
