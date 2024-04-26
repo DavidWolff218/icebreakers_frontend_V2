@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { GameRound } from "../types/types";
 
-
 type GameTextProps = {
   gameRound: GameRound;
   playerButton: () => ReactNode;
@@ -16,7 +15,6 @@ const GameText = ({
 
   resetQuestionsShuffle,
 }: GameTextProps) => {
-
   const renderGameText = (): JSX.Element => {
     return (
       <div>

@@ -35,7 +35,13 @@ const UseGameState = () => {
         gameActive: resp.room.game_started,
         // add voting timer stuff here
       });
-    } else if (resp.room && !resp.room.game_started) {
+    } else if (resp.nextPlayer && !resp.currentQuestion) {
+      // for when nextPlayer logs out of the game
+      setGameRound((prevGameRound) => ({
+          ...prevGameRound,
+          nextPlayer: resp.nextPlayer,
+      })); 
+     } else if (resp.room && !resp.room.game_started) {
       //used for updating lobby of users as new ones come in
       setAllUsers(resp.allUsers)
     }

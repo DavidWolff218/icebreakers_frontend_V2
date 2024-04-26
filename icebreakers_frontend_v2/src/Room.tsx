@@ -130,6 +130,7 @@ const Room = ({ roomInfo }: RoomProps) => {
       body: JSON.stringify({
         user: {
           id: user.id,
+          room: roomId
         },
       }),
     };
