@@ -12,9 +12,9 @@ import { API_ROOT } from "./constants";
 
 function App() {
   const [roomInfo, setRoomInfo] = useState<RoomInfo>({
-    user: { id: 0, username: "" },
+    user: { id: null, username: "" },
     roomName: "",
-    host: { id: 0, username: "" },
+    host: { id: null, username: "" },
     gameStarted: false,
   });
 
@@ -68,7 +68,7 @@ function App() {
           <Route
             path="/room/:roomId"
             element={
-              roomInfo.user.id !== 0 ? <Room roomInfo={roomInfo} /> : null
+              roomInfo.user.id !== null ? <Room roomInfo={roomInfo} /> : null
             }
           />
           {/* this conditional is for token check and proper rendering. without it will not properly set state and room will render before it should */}
