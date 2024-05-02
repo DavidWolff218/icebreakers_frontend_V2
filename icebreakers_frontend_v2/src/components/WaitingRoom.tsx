@@ -37,8 +37,8 @@ const WaitingRoom = ({
         <div>
           <h2>
             The host, <span>{host.username}</span>, will start the game soon!
+            <div>{renderAllUsers(allUsers)}</div>
           </h2>
-          {renderAllUsers(allUsers)}
         </div>
       );
     }

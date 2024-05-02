@@ -48,8 +48,6 @@ const Room = ({ roomInfo }: RoomProps) => {
       };
       fetchUsers();
     } else {
-      console.log("gameStarted == true");
-
       const fetchRound = async () => {
         try {
           const resp = await fetch(`${API_ROOT}/users/midgame/${roomId}`);
@@ -92,7 +90,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           user: {
             room: roomId,
             currentPlayerID: gameRound.currentPlayer.id,
-            nextPlayer: gameRound.nextPlayer.id,
+            nextPlayerID: gameRound.nextPlayer.id,
           },
           question: {
             id: gameRound.currentQuestion.id,
