@@ -18,18 +18,20 @@ const Home = ({handleRoomData}: HomeProps) => {
   const renderBtns = (): JSX.Element => {
     return (
       <div>
-        <button onClick={() => handleClick(true)}>Join Room</button>
-        <button onClick={() => handleClick(false)}>Create Room</button>
+        <span onClick={() => handleClick(true)}>Join Room</span>
+        <span onClick={() => handleClick(false)}>Create Room</span>
       </div>
     );
   };
 
   return (
-    <div>
-      <>THIS IS THE HOME PAGE</>
-      {renderBtns()}
-      {showJoin ? <JoinRoom handleRoomData={handleRoomData}/> : <CreateRoom handleRoomData={handleRoomData}/>}
-    </div>
+   
+    <div className="flex justify-center items-center min-h-screen">
+      <div className='bg-white w-[328px] h-[283px] rounded-2xl'>
+        {renderBtns()}
+        {showJoin ? <JoinRoom handleRoomData={handleRoomData}/> : <CreateRoom handleRoomData={handleRoomData}/>}
+      </div>
+   </div>
   );
 };
 
