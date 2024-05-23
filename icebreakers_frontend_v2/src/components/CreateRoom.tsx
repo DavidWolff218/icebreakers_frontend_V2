@@ -20,7 +20,7 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
   const handleModal = () => {
     setTimeout(() => {
       setShowError(false);
-      setErrorText("")
+      setErrorText("");
     }, 5000);
   };
 
@@ -58,11 +58,13 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if(hostName.length < 2 || hostName.length > 20 ){
-      setErrorText("Your name must be greater than or less than 20 chacters in length");
+    if (hostName.length < 2 || hostName.length > 20) {
+      setErrorText(
+        "Your name must be greater than or less than 20 chacters in length"
+      );
       setShowError(true);
       handleModal();
-      return
+      return;
     }
 
     const reqObj: ReqObj = {
@@ -72,7 +74,7 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        room: { room_name: roomName, username: hostName } ,
+        room: { room_name: roomName, username: hostName },
       }),
     };
 
@@ -100,29 +102,35 @@ const CreateRoom = ({ handleRoomData }: CreateProps) => {
     }
   };
 
-  const renderForm = (): JSX.Element => {
-    return (
-      <div>
-        Room Name: {roomName}
-        <form onSubmit={handleSubmit}>
-          <label>Enter Host Name</label>
-          <input
-            type="text"
-            name="hostName"
-            value={hostName}
-            onChange={handleChange}
-          />
-          <button type="submit">Create your Room</button>
-        </form>
-      </div>
-    );
-  };
-
   return (
-    <div>
-      {showError && < ErrorModal errorText={errorText} />}
-      Here we can give you the room code and you can create your host name
-      {renderForm()}
+    <div className="flex flex-col flex-grow">
+      {showError && <ErrorModal errorText={errorText} />}
+      <form
+        className="flex-grow flex flex-col items-center justify-evenly"
+        onSubmit={handleSubmit}
+      >
+        <input
+          className="border-3 w-[290px] h-[50px] px-[19px] rounded-lg border-gray"
+          type="text"
+          placeholder="Player Name"
+          name="hostName"
+          value={hostName}
+          onChange={handleChange}
+        />
+        <input
+          className="border-3 w-[290px] h-[50px] px-[19px] rounded-lg border-gray"
+          type="text"
+          name="hostName"
+          value={roomName}
+          disabled
+        />
+        <button
+          className="bg-apricot font-semibold w-[222px] h-[34px] px-[26px] rounded-[32px] shadow"
+          type="submit"
+        >
+          Create Room
+        </button>
+      </form>
     </div>
   );
 };

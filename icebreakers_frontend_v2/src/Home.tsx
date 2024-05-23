@@ -17,17 +17,18 @@ const Home = ({handleRoomData}: HomeProps) => {
 
   const renderBtns = (): JSX.Element => {
     return (
-      <div>
-        <span onClick={() => handleClick(true)}>Join Room</span>
-        <span onClick={() => handleClick(false)}>Create Room</span>
+      <div className='flex justify-evenly mt-3'>
+        <h1 className={`font-semibold text-xl w-[120px] ${showJoin ? 'text-apricot border-b-4 border-current' : 'text-black'}`} onClick={() => handleClick(true)}>Join Room</h1>
+        <h1 className={`font-semibold text-xl w-[137px] ${!showJoin ? 'text-apricot border-b-4 border-current' : 'text-black'}`} onClick={() => handleClick(false)}>Create Room</h1>
       </div>
     );
   };
+  // <h1 className='font-semibold text-xl underline decoration-3 decoration-apricot underline-offset-4' onClick={() => handleClick(false)}>Create Room</h1>
 
   return (
    
-    <div className="flex justify-center items-center min-h-screen">
-      <div className='bg-white w-[328px] h-[283px] rounded-2xl'>
+    <div className='flex justify-center items-center min-h-screen'>
+      <div className='bg-white w-[328px] h-[283px] rounded-2xl flex flex-col'>
         {renderBtns()}
         {showJoin ? <JoinRoom handleRoomData={handleRoomData}/> : <CreateRoom handleRoomData={handleRoomData}/>}
       </div>

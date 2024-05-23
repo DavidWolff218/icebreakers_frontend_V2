@@ -6,19 +6,18 @@ import { ReqObj, RoomForm } from "../types/types";
 import ErrorModal from "../modals/ErrorModal";
 
 type JoinProps = {
-  handleRoomData: (room: RoomData, user: User) => void
-}
+  handleRoomData: (room: RoomData, user: User) => void;
+};
 
-const JoinRoom = ({handleRoomData}: JoinProps) => {
-
+const JoinRoom = ({ handleRoomData }: JoinProps) => {
   const [showError, setShowError] = useState(false);
   const [errorText, setErrorText] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [joinForm, setJoinForm] = useState<RoomForm>({
     room_name: "",
-    username: ""
+    username: "",
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,18 +30,20 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
   const handleModal = () => {
     setTimeout(() => {
       setShowError(false);
-      setErrorText("")
+      setErrorText("");
     }, 5000);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    if(joinForm.username.length < 2 || joinForm.username.length > 20 ){
-      setErrorText("Your name must be greater than or less than 20 chacters in length");
+    if (joinForm.username.length < 2 || joinForm.username.length > 20) {
+      setErrorText(
+        "Your name must be greater than or less than 20 chacters in length"
+      );
       setShowError(true);
       handleModal();
-      return
+      return;
     }
     const reqObj: ReqObj = {
       method: "POST",
@@ -62,10 +63,10 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
         setShowError(true);
         handleModal();
       } else {
-        const data = await resp.json()
+        const data = await resp.json();
         sessionStorage.setItem("token", data.jwt);
-        handleRoomData(data.room, data.user)
-        navigate(`/room/${data.room.id}`)
+        handleRoomData(data.room, data.user);
+        navigate(`/room/${data.room.id}`);
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -79,29 +80,33 @@ const JoinRoom = ({handleRoomData}: JoinProps) => {
   };
 
   return (
-    <div>
-      {showError && < ErrorModal errorText={errorText} />}
-      <form onSubmit={handleSubmit}>
-        <label>Room Code</label>
-        <br />
+    <div className="flex flex-col flex-grow">
+      {showError && <ErrorModal errorText={errorText} />}
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col flex-grow items-center justify-evenly"
+      >
         <input
-          type="text"
-          value={joinForm.room_name}
-          name="room_name"
-          onChange={handleChange}
-        ></input>
-        <br />
-        <label>Username</label>
-        <br />
-        <input
+          className="border-3 w-[290px] h-[50px] px-[19px] rounded-lg border-gray"
+          placeholder="Player Name"
           type="text"
           value={joinForm.username}
           name="username"
           onChange={handleChange}
         ></input>
-        <br />
-        <button type="submit" >
-          Submit
+        <input
+          className="border-3 w-[290px] h-[50px] px-[19px] rounded-lg border-gray"
+          placeholder="Room Code"
+          type="text"
+          value={joinForm.room_name}
+          name="room_name"
+          onChange={handleChange}
+        ></input>
+        <button
+          className="bg-apricot font-semibold w-[222px] h-[34px] px-[26px] rounded-[32px] shadow"
+          type="submit"
+        >
+          Join Room
         </button>
       </form>
     </div>
