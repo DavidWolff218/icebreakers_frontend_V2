@@ -3,6 +3,7 @@ import CreateRoom from "./components/CreateRoom";
 import JoinRoom from "./components/JoinRoom";
 import { RoomData, User } from "./types/types";
 
+
 type HomeProps = {
   handleRoomData: (room: RoomData, user: User) => void;
 }
@@ -26,13 +27,14 @@ const Home = ({handleRoomData}: HomeProps) => {
   // <h1 className='font-semibold text-xl underline decoration-3 decoration-apricot underline-offset-4' onClick={() => handleClick(false)}>Create Room</h1>
 
   return (
-   
+   <>
     <div className='flex justify-center items-center min-h-screen'>
-      <div className='bg-white w-[328px] h-[283px] rounded-2xl flex flex-col'>
+      <div className='bg-white w-[328px] h-[283px] rounded-2xl flex flex-col shadow'>
         {renderBtns()}
         {showJoin ? <JoinRoom handleRoomData={handleRoomData}/> : <CreateRoom handleRoomData={handleRoomData}/>}
       </div>
    </div>
+   </>
   );
 };
 

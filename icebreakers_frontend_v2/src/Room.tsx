@@ -221,7 +221,7 @@ const Room = ({ roomInfo }: RoomProps) => {
   };
 
   return (
-    <div>
+    <div className='relative min-h-screen'>
       <NavBar
         user={user}
         host={host}
@@ -239,6 +239,7 @@ const Room = ({ roomInfo }: RoomProps) => {
       >
         {gameRound.gameActive ? screenText() : waitingText()}
       </ActionCableConsumer>
+      
     </div>
   );
 };
