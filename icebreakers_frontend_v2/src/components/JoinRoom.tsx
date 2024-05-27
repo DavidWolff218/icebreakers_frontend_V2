@@ -103,7 +103,7 @@ const JoinRoom = ({ handleRoomData }: JoinProps) => {
           onChange={handleChange}
         ></input>
         <button
-          className="bg-apricot font-semibold w-[222px] h-[34px] px-[26px] rounded-[32px] shadow"
+          className="bg-apricot font-semibold w-[222px] h-[34px] rounded-[32px] shadow"
           type="submit"
         >
           Join Room

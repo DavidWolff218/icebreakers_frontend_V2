@@ -12,19 +12,20 @@ type ResetFunction = () => void;
 const GameText = ({
   gameRound,
   playerButton,
-
   resetQuestionsShuffle,
 }: GameTextProps) => {
   const renderGameText = (): JSX.Element => {
     return (
-      <div>
-        Next up: {gameRound.nextPlayer.username}
-        <br></br>
-        <h3>{gameRound.currentPlayer.username}</h3>
-        <h3>{gameRound.currentQuestion.content}</h3>
-        <br></br>
+      <>
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+        {/* this placement to be changed later ^^^^ */}
+        {/* Next up: {gameRound.nextPlayer.username} */}
+        <div className='flex flex-col items-center justify-evenly w-[328px] h-[167px] bg-white rounded-2xl'>
+        <h2 className='text-xl leading-6'>{gameRound.currentPlayer.username}, {gameRound.currentQuestion.content}</h2>
         {playerButton()}
-      </div>
+        </div>
+        </div>
+      </>
     );
   };
 

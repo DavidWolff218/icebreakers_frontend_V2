@@ -108,7 +108,7 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   const playerButton = () => {
     if (gameRound.currentPlayer.id === user.id || user.id === host.id) {
-      return <button onClick={handleNextClick}>NEXT QUESTION</button>;
+      return <button className='w-[222px] h-[34px] bg-apricot rounded-[32px] shadow' onClick={handleNextClick}>NEXT QUESTION</button>;
     } else {
       return null;
     }
