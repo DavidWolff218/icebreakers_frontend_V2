@@ -1,19 +1,33 @@
 import { ReactNode } from "react";
-import { GameRound } from "../types/types";
+import { GameRound, User } from "../types/types";
 
 type GameTextProps = {
   gameRound: GameRound;
-  playerButton: () => ReactNode;
   resetQuestionsShuffle: ResetFunction;
+  handleNextClick: () => Promise<void>;
+  user: User;
+  host: User;
 };
 
 type ResetFunction = () => void;
 
 const GameText = ({
   gameRound,
-  playerButton,
   resetQuestionsShuffle,
+  handleNextClick,
+  user,
+  host
 }: GameTextProps) => {
+
+
+  const playerButton = () => {
+    if (gameRound.currentPlayer.id === user.id || user.id === host.id) {
+      return <button className='w-[222px] h-[34px] bg-apricot rounded-[32px] shadow' onClick={handleNextClick}>NEXT QUESTION</button>;
+    } else {
+      return null;
+    }
+  };
+
   const renderGameText = (): JSX.Element => {
     return (
       <>

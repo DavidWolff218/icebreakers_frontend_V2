@@ -106,14 +106,6 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   };
 
-  const playerButton = () => {
-    if (gameRound.currentPlayer.id === user.id || user.id === host.id) {
-      return <button className='w-[222px] h-[34px] bg-apricot rounded-[32px] shadow' onClick={handleNextClick}>NEXT QUESTION</button>;
-    } else {
-      return null;
-    }
-  };
-
   const handleLogOut = async () => {
     // let id = user.id;
     if (gameRound.currentPlayer.id === user.id) {
@@ -198,8 +190,10 @@ const Room = ({ roomInfo }: RoomProps) => {
       <div>
         <GameText
           gameRound={gameRound}
-          playerButton={playerButton}
           resetQuestionsShuffle={resetQuestionsShuffle}
+          handleNextClick={handleNextClick}
+          user={user}
+          host={host}
         />
       </div>
     );
