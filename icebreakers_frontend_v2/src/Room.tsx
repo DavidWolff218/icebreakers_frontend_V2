@@ -8,6 +8,7 @@ import GameText from "./components/GameText";
 import UseGameState from "./hooks/useGameState";
 import EndGameModal from "./modals/EndGameModal";
 import RoomCodeBox from "./components/RoomCodeBox";
+import HowToButton from "./components/HowToButton";
 // @ts-ignore
 import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 
@@ -235,6 +236,7 @@ const Room = ({ roomInfo }: RoomProps) => {
         {gameRound.gameActive ? screenText() : waitingText()}
       </ActionCableConsumer>
       < RoomCodeBox roomName={roomName}/>
+      < HowToButton />
     </div>
   );
 };
