@@ -1,8 +1,11 @@
+//@ts-ignore
+import { UilQuestionCircle } from '@iconscout/react-unicons'
+
 const HowToButton = () => {
   return (
     <>
-      <div className="w-[46px] h-[46px] bg-white rounded-full absolute bottom-4 right-4">
-        <h3>?</h3>
+      <div className="w-[46px] h-[46px] bg-white rounded-full absolute bottom-4 right-4 flex items-center justify-center">
+        <UilQuestionCircle size="34" className=""/>
       </div>
     </>
   );
