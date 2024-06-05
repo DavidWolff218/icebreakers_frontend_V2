@@ -8,6 +8,7 @@ type NavProps = {
   handleLogOut: () => void;
   handleEndGame: () => void;
   roomName: string;
+  handleShowMenu: () => void;
 };
 
 const NavBar = ({
@@ -16,8 +17,9 @@ const NavBar = ({
   handleLogOut,
   handleEndGame,
   roomName,
+  handleShowMenu
 }: NavProps) => {
-  
+
   const logOutBtn = (): JSX.Element => {
     if (user.id === host.id) {
       return <button onClick={handleEndGame}>END</button>;
@@ -30,7 +32,7 @@ const NavBar = ({
     <nav className="absolute top-0 left-0 w-full">
     <div className="w-full flex justify-center relative">
       <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-        <UilBars size="24" className="mt-7" />
+        <UilBars size="24" className="mt-7" onClick={handleShowMenu} />
       </div>
       <h2 className="text-4xl italic font-normal mt-7">
         IceBreakers

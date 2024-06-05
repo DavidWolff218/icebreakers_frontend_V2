@@ -5,7 +5,7 @@ const Menu = () => {
   }
 
   return (
-  <div className='h-screen w-2/3 '>
+  <div className='fixed top-0 left-0 h-screen w-2/3 bg-white z-50'>
     <h1>Menu</h1>
     <h2>How To Play</h2>
     <h2>Invite Link</h2>

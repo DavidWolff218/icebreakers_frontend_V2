@@ -111,6 +111,10 @@ const Room = ({ roomInfo }: RoomProps) => {
     }
   };
 
+  const handleShowMenu = () => {
+    setShowMenu(!showMenu)
+  }
+
   const handleLogOut = async () => {
     // let id = user.id;
     if (gameRound.currentPlayer.id === user.id) {
@@ -221,12 +225,14 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   return (
     <div className='relative min-h-screen'>
+      {showMenu ? <Menu /> : null}
       <NavBar
         user={user}
         host={host}
         handleLogOut={handleLogOut}
         handleEndGame={handleEndGame}
         roomName={roomName}
+        handleShowMenu={handleShowMenu}
       />
       {hostEnd && <EndGameModal />}
       <ActionCableConsumer
