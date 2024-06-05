@@ -2,6 +2,7 @@ import { useState } from "react";
 import CreateRoom from "./components/CreateRoom";
 import JoinRoom from "./components/JoinRoom";
 import { RoomData, User } from "./types/types";
+import Menu from "./components/Menu";
 
 
 type HomeProps = {

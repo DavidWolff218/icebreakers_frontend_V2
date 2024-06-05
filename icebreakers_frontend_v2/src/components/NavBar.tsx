@@ -17,6 +17,7 @@ const NavBar = ({
   handleEndGame,
   roomName,
 }: NavProps) => {
+  
   const logOutBtn = (): JSX.Element => {
     if (user.id === host.id) {
       return <button onClick={handleEndGame}>END</button>;

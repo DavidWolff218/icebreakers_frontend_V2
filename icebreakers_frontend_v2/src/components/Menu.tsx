@@ -5,7 +5,7 @@ const Menu = () => {
   }
 
   return (
-  <div>
+  <div className='h-screen w-2/3 '>
     <h1>Menu</h1>
     <h2>How To Play</h2>
     <h2>Invite Link</h2>

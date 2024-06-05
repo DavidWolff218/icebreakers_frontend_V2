@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { API_ROOT } from "./constants";
 import NavBar from "./components/NavBar";
 import { RoomInfo } from "./types/types";
@@ -9,6 +9,7 @@ import UseGameState from "./hooks/useGameState";
 import EndGameModal from "./modals/EndGameModal";
 import RoomCodeBox from "./components/RoomCodeBox";
 import HowToButton from "./components/HowToButton";
+import Menu from "./components/Menu";
 // @ts-ignore
 import { ActionCableConsumer } from "@thrash-industries/react-actioncable-provider";
 
@@ -22,6 +23,8 @@ const Room = ({ roomInfo }: RoomProps) => {
   const navigate = useNavigate();
 
   const { user, roomName, host, gameStarted } = roomInfo;
+
+  const [showMenu, setShowMenu] = useState(false)
 
   const {
     gameRound,
