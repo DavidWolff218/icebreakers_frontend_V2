@@ -5,8 +5,6 @@ import { UilBars } from '@iconscout/react-unicons'
 type NavProps = {
   user: User;
   host: User;
-  handleLogOut: () => void;
-  handleEndGame: () => void;
   roomName: string;
   handleShowMenu: () => void;
 };
@@ -14,20 +12,11 @@ type NavProps = {
 const NavBar = ({
   user,
   host,
-  handleLogOut,
-  handleEndGame,
   roomName,
   handleShowMenu
 }: NavProps) => {
 
-  const logOutBtn = (): JSX.Element => {
-    if (user.id === host.id) {
-      return <button onClick={handleEndGame}>END</button>;
-    } else {
-      return <button onClick={handleLogOut}>LOG</button>;
-    }
-  };
-
+ 
   return (
     <nav className="absolute top-0 left-0 w-full">
     <div className="w-full flex justify-center relative">

@@ -225,12 +225,10 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   return (
     <div className='relative min-h-screen'>
-      {showMenu ? <Menu handleShowMenu={handleShowMenu} roomName={roomName} /> : null}
+      {showMenu ? <Menu handleShowMenu={handleShowMenu} roomName={roomName} user={user} host ={host} handleLogOut={handleLogOut} handleEndGame={handleEndGame}/> : null}
       <NavBar
         user={user}
         host={host}
-        handleLogOut={handleLogOut}
-        handleEndGame={handleEndGame}
         roomName={roomName}
         handleShowMenu={handleShowMenu}
       />
