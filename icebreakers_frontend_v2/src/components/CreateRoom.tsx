@@ -4,6 +4,8 @@ import { RoomData, User } from "../types/types";
 import { useNavigate } from "react-router-dom";
 import { ReqObj } from "../types/types";
 import ErrorModal from "../modals/ErrorModal";
+//@ts-ignore
+import { UilLock } from '@iconscout/react-unicons'
 
 type CreateProps = {
   handleRoomData: (room: RoomData, user: User) => void;

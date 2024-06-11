@@ -194,7 +194,6 @@ const Room = ({ roomInfo }: RoomProps) => {
   };
 
   const screenText = () => {
-    //can't get this to work using useGameState and not props
     return (
       <div>
         <GameText
@@ -203,6 +202,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           handleNextClick={handleNextClick}
           user={user}
           host={host}
+          showMenu={showMenu}
         />
       </div>
     );
@@ -217,6 +217,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           user={user}
           handleStartClick={handleStartClick}
           allUsers={allUsers}
+          showMenu={showMenu}
         />
       );
     }

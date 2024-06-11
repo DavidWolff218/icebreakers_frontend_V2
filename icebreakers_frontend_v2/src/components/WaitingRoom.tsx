@@ -1,10 +1,13 @@
 import { User } from "../types/types";
+//@ts-ignore
+import { UilShareAlt } from "@iconscout/react-unicons";
 
 type WaitingRoomProps = {
   host: User;
   user: User;
   handleStartClick: () => void;
   allUsers: User[];
+  showMenu: boolean;
 };
 
 const WaitingRoom = ({
@@ -12,12 +15,14 @@ const WaitingRoom = ({
   user,
   allUsers,
   handleStartClick,
+  showMenu
 }: WaitingRoomProps) => {
   const startButton = () => {
     return (
       <button
         className="bg-apricot font-semibold w-[222px] h-[34px] px-[26px] rounded-[32px] shadow"
         onClick={handleStartClick}
+        disabled={showMenu}
       >
         Everybody's Here!
       </button>
@@ -41,9 +46,10 @@ const WaitingRoom = ({
     Why does this appear up here
           <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
           <div className="bg-white w-[328px] h-[346px] flex flex-col items-center rounded-2xl">
-            <h2 className="font-semibold text-[22px] tracking-[0.1px] leading-[20px] pt-[12px]">
-              Players
-            </h2>
+              <h2 className="font-semibold text-[22px] leading-[20px] pt-[12px]">
+                Players
+              </h2>
+              < UilShareAlt />
             <div className="w-[262px] h-[227px] border-y-3 border-gray mt-2 overflow-y-auto overflow-x-hidden">
               {renderAllUsers(allUsers)}
             </div>

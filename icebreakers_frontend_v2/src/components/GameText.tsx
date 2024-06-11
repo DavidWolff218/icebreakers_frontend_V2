@@ -7,6 +7,7 @@ type GameTextProps = {
   handleNextClick: () => Promise<void>;
   user: User;
   host: User;
+  showMenu: boolean;
 };
 
 type ResetFunction = () => void;
@@ -17,12 +18,14 @@ const GameText = ({
   handleNextClick,
   user,
   host,
+  showMenu
 }: GameTextProps) => {
 
   const playerButton = (
     <button
       className="w-[222px] h-[34px] bg-apricot rounded-[32px] shadow"
       onClick={handleNextClick}
+      disabled={showMenu}
     >
       NEXT QUESTION
     </button>
