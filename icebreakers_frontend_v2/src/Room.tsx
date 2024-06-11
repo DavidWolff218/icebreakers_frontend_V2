@@ -227,6 +227,9 @@ const Room = ({ roomInfo }: RoomProps) => {
   return (
     <div className='relative min-h-screen'>
       {showMenu ? <Menu handleShowMenu={handleShowMenu} roomName={roomName} user={user} host ={host} handleLogOut={handleLogOut} handleEndGame={handleEndGame}/> : null}
+      {showMenu && (
+  <div className="fixed top-0 left-0 w-full h-full bg-slate-800 opacity-50 z-40"></div>
+)}
       <NavBar
         user={user}
         host={host}
