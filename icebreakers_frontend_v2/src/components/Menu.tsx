@@ -13,6 +13,15 @@ type MenuProps = {
 
 const Menu = ({ handleShowMenu, handleLogOut, handleEndGame, roomName, user, host }: MenuProps) => {
 
+  const handleInviteLink = () => {
+    //putting in conditional to check for roomnamn, mighnt not end up using
+    if(roomName){
+      navigator.clipboard.writeText(`http://localhost:3001/?room=${roomName}`)
+    } else {
+      navigator.clipboard.writeText(`http://localhost:3001/`)
+    }
+  }
+
   return (
     <div className="fixed flex flex-col top-0 left-0 w-2/3 h-screen bg-white z-50 rounded-r-2xl rounded-l-[32px] border-y-4 border-l-4 border-apricot">
       <div className="flex items-center justify-between p-4 ">
@@ -27,7 +36,7 @@ const Menu = ({ handleShowMenu, handleLogOut, handleEndGame, roomName, user, hos
       <div className="mx-auto w-11/12 border-b-2 rounded-2xl border-gray"></div>
       <div className="flex items-center px-4 py-6">
         <UilShareAlt size="20" />
-        <h2 className="pl-5">Invite Link</h2>
+        <h2 onClick={handleInviteLink} className="pl-5">Invite Link</h2>
       </div>
       <div className="mx-auto w-11/12 border-b-2 rounded-2xl border-gray"></div>
       <div className="flex items-center px-4 py-6">

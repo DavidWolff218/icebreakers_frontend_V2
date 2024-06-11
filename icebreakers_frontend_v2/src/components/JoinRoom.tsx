@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RoomData, User } from "../types/types";
 import { API_ROOT } from "../constants";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ type JoinProps = {
 };
 
 const JoinRoom = ({ handleRoomData }: JoinProps) => {
+
   const [showError, setShowError] = useState(false);
   const [errorText, setErrorText] = useState("");
 
@@ -19,6 +20,17 @@ const JoinRoom = ({ handleRoomData }: JoinProps) => {
     room_name: "",
     username: "",
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const room = params.get('room')
+    if(room){
+      setJoinForm((prev: RoomForm) => ({
+        ...prev,
+        room_name: room
+      }))
+      }
+  }, [])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setJoinForm((prevState) => ({
