@@ -34,9 +34,9 @@ const Menu = ({ handleShowMenu, handleLogOut, handleEndGame, roomName, user, hos
         <h2 className="pl-5">How To Play</h2>
       </div>
       <div className="mx-auto w-11/12 border-b-2 rounded-2xl border-gray"></div>
-      <div className="flex items-center px-4 py-6">
+      <div onClick={handleInviteLink} className="flex items-center px-4 py-6">
         <UilShareAlt size="20" />
-        <h2 onClick={handleInviteLink} className="pl-5">Invite Link</h2>
+        <h2 className="pl-5">Invite Link</h2>
       </div>
       <div className="mx-auto w-11/12 border-b-2 rounded-2xl border-gray"></div>
       <div className="flex items-center px-4 py-6">

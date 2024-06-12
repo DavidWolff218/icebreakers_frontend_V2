@@ -2,7 +2,8 @@ import { useState } from "react";
 import CreateRoom from "./components/CreateRoom";
 import JoinRoom from "./components/JoinRoom";
 import { RoomData, User } from "./types/types";
-import Menu from "./components/Menu";
+import HowToButton from "./components/HowToButton";
+
 
 
 type HomeProps = {
@@ -34,6 +35,7 @@ const Home = ({handleRoomData}: HomeProps) => {
         {renderBtns()}
         {showJoin ? <JoinRoom handleRoomData={handleRoomData}/> : <CreateRoom handleRoomData={handleRoomData}/>}
       </div>
+      < HowToButton />
    </div>
    </>
   );

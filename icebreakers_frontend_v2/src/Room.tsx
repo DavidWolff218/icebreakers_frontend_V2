@@ -218,6 +218,7 @@ const Room = ({ roomInfo }: RoomProps) => {
           handleStartClick={handleStartClick}
           allUsers={allUsers}
           showMenu={showMenu}
+          roomName={roomName}
         />
       );
     }

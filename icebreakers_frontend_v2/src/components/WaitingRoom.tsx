@@ -8,6 +8,7 @@ type WaitingRoomProps = {
   handleStartClick: () => void;
   allUsers: User[];
   showMenu: boolean;
+  roomName: string;
 };
 
 const WaitingRoom = ({
@@ -15,7 +16,8 @@ const WaitingRoom = ({
   user,
   allUsers,
   handleStartClick,
-  showMenu
+  showMenu,
+  roomName
 }: WaitingRoomProps) => {
   const startButton = () => {
     return (
@@ -39,6 +41,10 @@ const WaitingRoom = ({
     });
   };
 
+  const handleInviteLink = () => {
+    navigator.clipboard.writeText(`http://localhost:3001/?room=${roomName}`)
+  }
+
   const waitingRoomText = () => {
     if (host.id === user.id) {
       return (
@@ -49,7 +55,7 @@ const WaitingRoom = ({
               <h2 className="font-semibold text-[22px] leading-[20px] pt-[12px]">
                 Players
               </h2>
-              < UilShareAlt />
+              < UilShareAlt onClick={handleInviteLink}/>
             <div className="w-[262px] h-[227px] border-y-3 border-gray mt-2 overflow-y-auto overflow-x-hidden">
               {renderAllUsers(allUsers)}
             </div>
