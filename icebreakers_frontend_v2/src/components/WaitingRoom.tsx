@@ -49,8 +49,7 @@ const WaitingRoom = ({
     if (host.id === user.id) {
       return (
         <>
-    Why does this appear up here
-          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+          {/* <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'> */}
           <div className="bg-white w-[328px] h-[346px] flex flex-col items-center rounded-2xl">
               <h2 className="font-semibold text-[22px] leading-[20px] pt-[12px]">
                 Players
@@ -61,7 +60,7 @@ const WaitingRoom = ({
             </div>
             <div className="my-auto">{startButton()}</div>
           </div>
-          </div>    
+          {/* </div>     */}
         </>
       );
     } else {

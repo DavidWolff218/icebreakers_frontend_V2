@@ -226,7 +226,8 @@ const Room = ({ roomInfo }: RoomProps) => {
   };
 
   return (
-    <div className='relative min-h-screen'>
+
+    <div className='relative min-h-screen flex flex-col justify-between items-center'>
       {showMenu ? <Menu handleShowMenu={handleShowMenu} roomName={roomName} user={user} host ={host} handleLogOut={handleLogOut} handleEndGame={handleEndGame}/> : null}
       {showMenu && (
   <div className="fixed top-0 left-0 w-full h-full bg-slate-800 opacity-50 z-40"></div>
@@ -248,7 +249,7 @@ const Room = ({ roomInfo }: RoomProps) => {
         {gameRound.gameActive ? screenText() : waitingText()}
       </ActionCableConsumer>
       < RoomCodeBox roomName={roomName}/>
-      < HowToButton />
+      {/* < HowToButton /> */}
     </div>
   );
 };

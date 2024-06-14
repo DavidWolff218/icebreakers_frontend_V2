@@ -7,7 +7,7 @@ const RoomCodeBox = ({roomName}: RoomCodeBoxProps) => {
 
   return (
     <>
-      <div className='w-[155px] h-[60px] absolute bottom-4 left-4 bg-white rounded-2xl flex flex-col justify-center'>
+      <div className='w-[155px] h-[60px] bottom-4 left-4 bg-white rounded-2xl flex flex-col justify-center'>
         <h3 className='font-semibold text-xl'>Room Code</h3>
         <h3 className='text-xl font-normal'>{roomName}</h3>
       </div>
