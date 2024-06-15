@@ -3,6 +3,7 @@ import CreateRoom from "./components/CreateRoom";
 import JoinRoom from "./components/JoinRoom";
 import { RoomData, User } from "./types/types";
 import HowToButton from "./components/HowToButton";
+import NavBarHome from "./components/NavBarHome";
 
 
 
@@ -30,12 +31,15 @@ const Home = ({handleRoomData}: HomeProps) => {
 
   return (
    <>
-    <div className='flex justify-center items-center min-h-screen'>
+    <div className='flex flex-col justify-between items-center min-h-screen'>
+      < NavBarHome />
       <div className='bg-white w-[328px] h-[283px] rounded-2xl flex flex-col shadow'>
         {renderBtns()}
         {showJoin ? <JoinRoom handleRoomData={handleRoomData}/> : <CreateRoom handleRoomData={handleRoomData}/>}
       </div>
+      <div className="flex w-full mb-4 justify-end">
       < HowToButton />
+      </div>
    </div>
    </>
   );
