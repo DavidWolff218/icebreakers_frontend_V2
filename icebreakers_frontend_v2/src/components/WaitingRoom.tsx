@@ -17,7 +17,7 @@ const WaitingRoom = ({
   allUsers,
   handleStartClick,
   showMenu,
-  roomName
+  roomName,
 }: WaitingRoomProps) => {
   const startButton = () => {
     return (
@@ -42,25 +42,26 @@ const WaitingRoom = ({
   };
 
   const handleInviteLink = () => {
-    navigator.clipboard.writeText(`http://localhost:3001/?room=${roomName}`)
-  }
+    navigator.clipboard.writeText(`http://localhost:3001/?room=${roomName}`);
+  };
 
   const waitingRoomText = () => {
     if (host.id === user.id) {
       return (
         <>
-          {/* <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'> */}
           <div className="bg-white w-[328px] h-[346px] flex flex-col items-center rounded-2xl">
-              <h2 className="font-semibold text-[22px] leading-[20px] pt-[12px]">
+            <div className='flex items-center w-full justify-between'>
+              <div className="h-[40px] w-[40px]"/>
+              <h2 className="font-semibold text-[22px] leading-5 pt-3">
                 Players
               </h2>
-              < UilShareAlt onClick={handleInviteLink}/>
+              <UilShareAlt onClick={handleInviteLink} className="pt-3 pr-4" size="40" />
+            </div>
             <div className="w-[262px] h-[227px] border-y-3 border-gray mt-2 overflow-y-auto overflow-x-hidden">
               {renderAllUsers(allUsers)}
             </div>
             <div className="my-auto">{startButton()}</div>
           </div>
-          {/* </div>     */}
         </>
       );
     } else {
@@ -69,14 +70,14 @@ const WaitingRoom = ({
           <h2>
             The host, <span>{host.username}</span>, will start the game soon!
           </h2>
-          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-          <div className="bg-white w-[328px] h-[284px] flex flex-col items-center rounded-2xl">
-            <h2 className="font-semibold text-[22px] tracking-[0.1px] leading-[20px] pt-[12px]">
-              Players
-            </h2>
-            <div className="w-[262px] h-[227px] border-y-3 border-gray mt-2 overflow-y-auto overflow-x-hidden">
-              {renderAllUsers(allUsers)}
-            </div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="bg-white w-[328px] h-[284px] flex flex-col items-center rounded-2xl">
+              <h2 className="font-semibold text-[22px] tracking-[0.1px] leading-[20px] pt-[12px]">
+                Players
+              </h2>
+              <div className="w-[262px] h-[227px] border-y-3 border-gray mt-2 overflow-y-auto overflow-x-hidden">
+                {renderAllUsers(allUsers)}
+              </div>
             </div>
           </div>
         </>
