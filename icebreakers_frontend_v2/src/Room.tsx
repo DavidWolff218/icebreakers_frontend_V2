@@ -248,8 +248,10 @@ const Room = ({ roomInfo }: RoomProps) => {
       >
         {gameRound.gameActive ? screenText() : waitingText()}
       </ActionCableConsumer>
-      < RoomCodeBox roomName={roomName}/>
-      {/* < HowToButton /> */}
+      <div className="flex w-full justify-between items-end mb-4">
+        < RoomCodeBox roomName={roomName}/>
+        < HowToButton />
+      </div> 
     </div>
   );
 };
