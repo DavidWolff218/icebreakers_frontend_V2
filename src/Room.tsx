@@ -227,7 +227,7 @@ const Room = ({ roomInfo }: RoomProps) => {
 
   return (
 
-    <div className='relative min-h-screen flex flex-col justify-between items-center'>
+    <div className='relative min-h-screen flex flex-col justify-between items-center bg-custom bg-cover bg-center'>
       {showMenu ? <Menu handleShowMenu={handleShowMenu} roomName={roomName} user={user} host ={host} handleLogOut={handleLogOut} handleEndGame={handleEndGame}/> : null}
       {showMenu && (
   <div className="fixed top-0 left-0 w-full h-full bg-slate-800 opacity-50 z-40"></div>
