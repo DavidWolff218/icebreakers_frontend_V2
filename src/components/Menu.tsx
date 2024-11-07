@@ -36,12 +36,12 @@ const Menu = ({ handleShowMenu, handleLogOut, handleEndGame, roomName, user, hos
       <div className="mx-auto w-11/12 border-b-2 rounded-2xl border-gray"></div>
       <div onClick={handleInviteLink} className="flex items-center px-4 py-6">
         <UilShareAlt size="20" />
-        <h2 className="pl-5">Invite Link</h2>
+        <h2 className="pl-5">Copy Invite Link</h2>
       </div>
       <div className="mx-auto w-11/12 border-b-2 rounded-2xl border-gray"></div>
       <div className="flex items-center px-4 py-6">
         <UilSignOutAlt size="20" />
-        {user.id === host.id ? <h2 onClick={handleEndGame} className="pl-5">Endgame</h2> : <h2 onClick={handleLogOut} className="pl-5">Logout</h2>}
+        {user.id === host.id ? <h2 onClick={handleEndGame} className="pl-5">End Game</h2> : <h2 onClick={handleLogOut} className="pl-5">Logout</h2>}
       </div>
       <div className="mx-auto w-11/12 border-b-3 rounded-2xl border-gray"></div>
 

@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Roboto Slab', 'serif'],
+        shrikhand: ['Shrikhand', 'cursive']
       },
       textDecorationThickness: {
         '3': '3px',

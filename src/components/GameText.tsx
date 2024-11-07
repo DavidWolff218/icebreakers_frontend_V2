@@ -23,11 +23,11 @@ const GameText = ({
 
   const playerButton = (
     <button
-      className="w-[222px] h-[34px] bg-apricot rounded-[32px] shadow"
+      className="w-[222px] h-[34px] bg-apricot rounded-[32px] shadow font-semibold"
       onClick={handleNextClick}
       disabled={showMenu}
     >
-      NEXT QUESTION
+      Next Question
     </button>
   );
 
@@ -39,7 +39,7 @@ const GameText = ({
           {/* Next up: {gameRound.nextPlayer.username} */}
           <div className="flex flex-col items-center justify-evenly w-[328px] h-[167px] bg-white rounded-2xl px-6">
             <h2 className="text-xl leading-6">
-              {gameRound.currentPlayer.username},{" "}
+              <span className="font-semibold">{gameRound.currentPlayer.username}</span>,{" "}
               {gameRound.currentQuestion.content}
             </h2>
             {playerButton}
