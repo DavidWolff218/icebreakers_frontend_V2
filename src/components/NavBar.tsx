@@ -2,14 +2,14 @@ import { User } from "../types/types";
 //@ts-ignore
 import { UilBars } from "@iconscout/react-unicons";
 
-type NavProps = {
+type NavBarProps = {
   user: User;
   host: User;
   roomName: string;
   handleShowMenu: () => void;
 };
 
-const NavBar = ({ user, host, roomName, handleShowMenu }: NavProps) => {
+const NavBar = ({ user, host, roomName, handleShowMenu }: NavBarProps) => {
   return (
     <nav className="w-full flex justify-between items-center">
       <UilBars size="24" className="mt-7 ml-4" onClick={handleShowMenu} />
