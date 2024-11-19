@@ -1,4 +1,5 @@
 import { User } from "../types/types";
+import UpperTextWindow from "./UpperTextWindow";
 //@ts-ignore
 import { UilShareAlt } from "@iconscout/react-unicons";
 
@@ -19,6 +20,7 @@ const WaitingRoom = ({
   showMenu,
   roomName,
 }: WaitingRoomProps) => {
+
   const startButton = () => {
     return (
       <button
@@ -49,6 +51,7 @@ const WaitingRoom = ({
     if (host.id === user.id) {
       return (
         <>
+        <UpperTextWindow title="Glad you're here!" description={"As the host, you can start the game when everyone is here."}/>
           <div className="bg-white w-[328px] h-[346px] flex flex-col items-center rounded-2xl">
             <div className="flex items-center w-full justify-between">
               <div className="h-[40px] w-[40px]" />
@@ -73,9 +76,7 @@ const WaitingRoom = ({
     } else {
       return (
         <>
-          {/* <h2>
-            The host, <span>{host.username}</span>, will start the game soon!
-          </h2> */}
+          <UpperTextWindow title="Sit tight!" description={"Your host will start the game soon."}/>
           <div className="bg-white w-[328px] h-[284px] flex flex-col items-center rounded-2xl">
             <div className="flex items-center w-full justify-between">
               <div className="h-[40px] w-[40px]" />

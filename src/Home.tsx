@@ -57,7 +57,7 @@ const Home = ({ handleRoomData }: HomeProps) => {
         )}
         <NavBarHome handleShowMenu={handleShowMenu} />
         <div className="w-full flex flex-col items-center">
-          <UpperTextWindow title={'Welcome to IceBreakers!'} description={"Let's get to know eachother thourhg this blah blah blah"}  />
+          <UpperTextWindow title='Welcome to IceBreakers!' description="Let's get to know eachother thourhg this blah blah blah" />
         </div>
         <div className="bg-white flex flex-col w-[328px] h-[283px] rounded-2xl shadow">
           {renderBtns()}
