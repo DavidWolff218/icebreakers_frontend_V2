@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { GameRound, User } from "../types/types";
+import UpperPlayerWindow from "./UpperPlayerWindow";
 
 type GameTextProps = {
   gameRound: GameRound;
@@ -18,9 +19,8 @@ const GameText = ({
   handleNextClick,
   user,
   host,
-  showMenu
+  showMenu,
 }: GameTextProps) => {
-
   const playerButton = (
     <button
       className="w-[222px] h-[34px] bg-apricot rounded-[32px] shadow font-semibold"
@@ -33,33 +33,49 @@ const GameText = ({
 
   const renderGameText = (): JSX.Element => {
     if (gameRound.currentPlayer.id === user.id || user.id === host.id) {
-      return ( <>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          {/* this placement to be changed later ^^^^ */}
-          {/* Next up: {gameRound.nextPlayer.username} */}
-          <div className="flex flex-col items-center justify-evenly w-[328px] h-[167px] bg-white rounded-2xl px-6">
-            <h2 className="text-xl leading-6">
-              <span className="font-semibold">{gameRound.currentPlayer.username}</span>,{" "}
+      return (
+        <>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <UpperPlayerWindow
+              currentPlayer={gameRound.currentPlayer.username}
+              nextPlayer={gameRound.nextPlayer.username}
+            />
+            {/* this placement to be changed later ^^^^ */}
+            {/* Next up: {gameRound.nextPlayer.username} */}
+            <div className="flex flex-col items-center justify-evenly w-[328px] h-[167px] bg-white rounded-2xl px-6">
+              <h2 className="text-xl leading-6">
+                <span className="font-semibold">
+                  {gameRound.currentPlayer.username}
+                </span>
+                ,{" "}
+              </h2>
               {gameRound.currentQuestion.content}
-            </h2>
-            {playerButton}
+              {playerButton}
+            </div>
           </div>
-        </div>
-      </>
+        </>
       );
     } else {
-      return (<>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          {/* this placement to be changed later ^^^^ */}
-          {/* Next up: {gameRound.nextPlayer.username} */}
-          <div className="flex flex-col items-center justify-evenly w-[328px] h-[106px] bg-white rounded-2xl px-6">
-            <h2 className="text-xl leading-6">
-              {gameRound.currentPlayer.username},{" "}
-              {gameRound.currentQuestion.content}
-            </h2>
+      return (
+        <>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <UpperPlayerWindow
+              currentPlayer={gameRound.currentPlayer.username}
+              nextPlayer={gameRound.nextPlayer.username}
+            />
+            {/* this placement to be changed later ^^^^ */}
+            {/* Next up: {gameRound.nextPlayer.username} */}
+            <div className="flex flex-col items-center justify-evenly w-[328px] h-[106px] bg-white rounded-2xl px-6">
+              <h2 className="text-xl leading-6">
+                <span className="font-semibold">
+                  {gameRound.currentPlayer.username}
+                </span>
+                , {gameRound.currentQuestion.content}
+              </h2>
+            </div>
           </div>
-        </div>
-      </>);
+        </>
+      );
     }
   };
 
