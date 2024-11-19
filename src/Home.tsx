@@ -5,6 +5,7 @@ import { RoomData, User } from "./types/types";
 import HowToButton from "./components/HowToButton";
 import NavBarHome from "./components/NavBarHome";
 import MenuHome from "./components/MenuHome";
+import UpperTextWindow from "./components/UpperTextWindow";
 
 type HomeProps = {
   handleRoomData: (room: RoomData, user: User) => void;
@@ -55,7 +56,10 @@ const Home = ({ handleRoomData }: HomeProps) => {
           <div className="fixed top-0 left-0 w-full h-full bg-slate-800 opacity-50 z-40"></div>
         )}
         <NavBarHome handleShowMenu={handleShowMenu} />
-        <div className="bg-white w-[328px] h-[283px] rounded-2xl flex flex-col shadow">
+        <div className="w-full flex flex-col items-center">
+          <UpperTextWindow title={'Welcome to IceBreakers!'} description={"Let's get to know eachother thourhg this blah blah blah"}  />
+        </div>
+        <div className="bg-white flex flex-col w-[328px] h-[283px] rounded-2xl shadow">
           {renderBtns()}
           {showJoin ? (
             <JoinRoom handleRoomData={handleRoomData} />
@@ -63,7 +67,7 @@ const Home = ({ handleRoomData }: HomeProps) => {
             <CreateRoom handleRoomData={handleRoomData} />
           )}
         </div>
-        <div className="flex w-full mb-4 justify-end">
+        <div className="flex w-full mb-5 justify-end">
           <HowToButton />
         </div>
       </div>
